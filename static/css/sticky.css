@@ -1,0 +1,135 @@
+/* Sticky-Menü bleibt oben fixiert (nur auf Desktop) */
+@media screen and (min-width: 1025px) {
+  .sticky-menu {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease-in-out;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+  }
+
+  /* Logo-Container (Grafik & Text) */
+  .sticky-menu .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  }
+
+  /* Logo-Grafik */
+  .sticky-menu .logo-image {
+      max-height: 40px;
+      height: auto;
+      display: block;
+  }
+
+  /* Logo-Text */
+  .sticky-menu .logo-text {
+      font-size: 20px;
+      font-weight: bold;
+      color: #a64597;
+      white-space: nowrap;
+      display: block;
+  }
+
+  /* Falls Logografik deaktiviert ist, Logo-Text linksbündig */
+  .sticky-menu.no-logo .logo-text {
+      margin-left: 0;
+  }
+
+  /* Slogan ausblenden */
+  .sticky-menu .logo-subtext {
+      display: none !important;
+  }
+}
+
+/* Kein Sticky-Menü auf Smartphone & Tablet */
+@media screen and (max-width: 1024px) {
+  .sticky-menu {
+      position: relative !important;
+      box-shadow: none !important;
+  }
+}
+
+/* Sticky-Menü bleibt oben fixiert (nur auf Desktop) */
+@media screen and (min-width: 1025px) {
+  .sticky-menu {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease-in-out;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+  }
+
+  /* Logo-Container links */
+  .sticky-menu .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      order: 1; /* Logo zuerst */
+  }
+
+  /* Logo-Grafik */
+  .sticky-menu .logo-image {
+      max-height: 40px;
+      height: auto;
+      display: block;
+  }
+
+  /* Logo-Text (soll links sein) */
+  .sticky-menu .logo-text {
+      font-size: 20px;
+      font-weight: bold;
+      color: #a64597;
+      white-space: nowrap;
+      display: block;
+      margin-left: 0;
+  }
+
+  /* Menü rechts */
+  .sticky-menu .menu-list {
+      display: flex;
+      gap: 15px;
+      order: 2; /* Menü nach rechts verschieben */
+  }
+
+  /* Falls Logografik deaktiviert ist, springt das Text-Logo nach links */
+  .sticky-menu.no-logo .logo-text {
+      margin-left: 0;
+  }
+
+  /* 🔹 Logo-Text & Logo-Subtext nebeneinander anzeigen */
+  .sticky-menu .logo-text {
+      display: inline-block;
+      margin-right: 10px; /* Abstand zwischen Text und Subtext */
+      transform: translateX(-20px); /* Beide leicht nach links verschieben */
+  }
+
+  .sticky-menu .logo-subtext {
+      display: inline-block; /* Neben `logo-text` setzen */
+      font-size: 0.9em; /* Optional: leicht verkleinern */
+      color: #888; /* Optional: leicht grauer Ton */
+      transform: translateX(-20px); /* Beide leicht nach links verschieben */
+  }
+}
+
+/* Kein Sticky-Menü auf Smartphone & Tablet */
+@media screen and (max-width: 1024px) {
+  .sticky-menu {
+      position: relative !important;
+      box-shadow: none !important;
+  }
+}

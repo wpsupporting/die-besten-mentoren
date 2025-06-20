@@ -1,0 +1,50 @@
+/* Wrapper für den Button-Container, nur für diesen Shortcode */
+.shortcode-cta-btn-wrapper {
+    display: flex;
+    justify-content: center;  /* Horizontale Zentrierung */
+    align-items: center;      /* Vertikale Zentrierung */
+    margin-top: 20px;         /* Optionaler Abstand nach oben */
+}
+
+/* Flexbox für die Buttons */
+.shortcode-cta-btn {
+    display: flex;
+    justify-content: center;
+    gap: 15px;                /* Abstand zwischen den Buttons */
+}
+
+/* Grundlegendes Styling für die Buttons */
+.shortcode-cta-btn a {
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    background-color: #007bff; /* Beispiel Hintergrundfarbe */
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.shortcode-cta-btn i {
+    margin-right: 8px;
+}
+
+
+/* Shortcode-Buttons-CTA*/
+/* Hover-Effekte für Buttons */
+.shortcode-cta-btn a:hover {
+    background-color: #0056b3; /* Beispiel Hover-Farbe */
+}
+
+/* Individuelle Button-Stile für unterschiedliche Typen */
+.shortcode-cta-btn-landingpage {
+    background-color: #28a745; /* Grün für Landingpage */
+}
+
+.shortcode-cta-btn-discount {
+    background-color: #ffc107; /* Gelb für Rabatt */
+}
+
+.shortcode-cta-btn-buy-now {
+    background-color: #dc3545; /* Rot für Sonderangebot */
+}

@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+              {{ template "produkte/produktesidebar.html" . }}
+        </div>
+
+        <!-- Hauptinhalt -->
+        <div class="col-md-9">
+            <h1>produkte in der Kategorie: {{ .Title }}</h1>
+
+            <!-- Überprüfung, ob es Inhalte gibt -->
+            {{ if gt (len .Pages) 0 }}
+            <!-- produkte-Grid -->
+            <div class="content-row d-flex flex-wrap gap-3">
+                {{ range .Pages }}
+                <div class="content-item flex-grow-1" style="max-width: calc(33.33% - 15px); margin-bottom: 15px;">
+                    <section class="content">
+                        <!-- Titel -->
+                        <h2 class="content-title">
+                            <a href="{{ .Permalink }}">{{ .Title }}</a>
+                        </h2>
+
+                        <!-- Bild -->
+                        <div class="image">
+                            <a href="{{ .Permalink }}">
+                                {{ if .Params.mdnz_produkte_archiv_image_ }}
+                                    <img src="{{ .Params.mdnz_produkte_archiv_image_ | relURL }}" alt="{{ .Params.mdnz_produkte_archiv_title_ | default "Bild für Mentor" }}">
+                                {{ else }}
+                                    <img src="{{ "img/placeholder.png" | relURL }}" alt="Platzhalter-Bild für Mentor">
+                                {{ end }}
+                            </a>
+                        </div>
+
+                        <!-- Kurzbeschreibung -->
+                        <p class="short-description">
+                            {{ .Params.mdnz_produkte_archiv_shortdescription_ | default "Keine Beschreibung vorhanden." }}
+                        </p>
+                    </section>
+                </div>
+                {{ end }}
+
+                <!-- Sicherstellen, dass mindestens zwei Spalten angezeigt werden -->
+                {{ if lt (len .Pages) 2 }}
+                <div class="content-item flex-grow-1 invisible-placeholder" style="max-width: calc(33.33% - 15px); margin-bottom: 15px;"></div>
+                {{ end }}
+            </div>
+            {{ else }}
+            <p class="alert alert-warning">Keine produkte in dieser Kategorie gefunden.</p>
+            {{ end }}
+
+            <!-- Pagination -->
+            <div class="row">
+                <div class="col-md-12">
+                    <nav aria-label="Page navigation">
+                        {{ template "_internal/pagination.html" . }}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

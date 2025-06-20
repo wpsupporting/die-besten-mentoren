@@ -1,0 +1,45 @@
+{{ $produkte := where .Site.RegularPages "Type" "produkte" }}
+{{ if gt (len $produkte) 0 }}
+<section>
+    <div class="home-carousel">
+        <div class="dark-mask"></div>
+        <div class="container">
+            <div class="homepage owl-carousel"
+                data-autoplay="{{ default true .Site.Params.CarouselHomepage.auto_play }}"
+                data-slide-speed="{{ default 2000 .Site.Params.CarouselHomepage.slide_speed }}"
+                data-pagination-speed="{{ default 1000 .Site.Params.CarouselHomepage.pagination_speed }}">
+                
+                <!-- Schleife durch alle Produkte -->
+                {{ range sort $produkte "Params.weight" }}
+                <div class="item">
+                    <!-- Produkt-Bild und Titel -->
+                    <div class="row">
+                        <div class="col-sm-5 right">
+                            <h1>{{ .Params.mdnz_produkte_archiv_title_ | default .Title }}</h1>
+                            <p>{{ .Params.mdnz_produkte_archiv_shortdescription_ | markdownify }}</p>
+                            
+                            <!-- Button einfügen -->
+                            {{ partial "shortcodes/produkte_button.html" (dict "text" "Jetzt bestellen" "url" .Params.mdnz_affiliateLink_ogskd "class" "btn btn-primary") }}
+                        </div>
+                        <div class="col-sm-7">
+                            <a href="{{ .Permalink }}">
+                                {{ if .Params.mdnz_produkte_archiv_image_ }}
+                                    <img class="img-responsive" src="{{ .Params.mdnz_produkte_archiv_image_ | relURL }}" alt="{{ .Params.mdnz_produkte_archiv_title_ }}">
+                                {{ else if .Params.mdnz_produkte_single_image_ }}
+                                    <img class="img-responsive" src="{{ .Params.mdnz_produkte_single_image_ | relURL }}" alt="{{ .Params.mdnz_produkte_archiv_title_ }}">
+                                {{ else if .Site.Data.produktefallbackimage.fallback_image }}
+                                    <img class="img-responsive" src="{{ site.Data.produktefallbackimage.fallback_image | relURL }}" alt="Standardbild">
+                                {{ else }}
+                                    <span class="no-image">Kein Bild verfügbar</span>
+                                {{ end }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+            <!-- /.project owl-slider -->
+        </div>
+    </div>
+</section>
+{{ end }}

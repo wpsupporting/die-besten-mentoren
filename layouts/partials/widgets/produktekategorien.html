@@ -1,0 +1,32 @@
+{{ if .Site.Params.widgets.produktekategorien }}
+    {{ if isset .Site.Taxonomies "produktekategorien" }}
+        {{ if not (eq (len .Site.Taxonomies.produktekategorien) 0) }}
+        <div class="panel panel-default sidebar-menu">
+            <div class="panel-heading">
+                <h3 class="panel-title">produktekategorien</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                    {{ range $name, $items := .Site.Taxonomies.produktekategorien }}
+                    <li>
+                        <a href="{{ "produktekategorien/" | relLangURL }}{{ $name | urlize | lower }}" title="Zeige produkte in der Kategorie {{ $name | title }}">
+                            {{ $name | title }} ({{ len $items }})
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+        {{ else }}
+        <!-- Meldung, wenn keine Kategorien vorhanden sind -->
+        <div class="panel panel-default sidebar-menu">
+            <div class="panel-heading">
+                <h3 class="panel-title">produktekategorien</h3>
+            </div>
+            <div class="panel-body">
+                <p>Keine produktekategorien gefunden.</p>
+            </div>
+        </div>
+        {{ end }}
+    {{ end }}
+{{ end }}

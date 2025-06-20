@@ -1,0 +1,58 @@
+{{ template "_internal/google_analytics.html" . }}
+
+<!-- jQuery (muss zuerst geladen werden, da viele Plugins darauf basieren) -->
+<script src="{{ "js/jquery/jquery.min.js" | relURL }}"></script>
+
+<!-- Bootstrap (benötigt jQuery) -->
+<script src="{{ "bootstrap/js/bootstrap.min.js" | relURL }}"></script>
+
+<!-- Plugins, die jQuery verwenden -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<!-- Optionale Google Maps-Integration -->
+{{ if and .Site.Params.enableGoogleMaps .Site.Params.googleMapsApiKey }}
+<script src="//maps.googleapis.com/maps/api/js?key={{.Site.Params.googleMapsApiKey}}&v=3.exp"></script>
+<script src="{{ "js/hpneo.gmaps.js" | relURL }}"></script>
+<script src="{{ "js/gmaps.init.js" | relURL }}"></script>
+{{ end }}
+
+<!-- Optionale reCAPTCHA-Integration -->
+{{ if and .Site.Params.enableRecaptchaInContactForm .Site.Params.googleRecaptchaKey }}
+<script src="//www.google.com/recaptcha/api.js" async defer></script>
+{{ end }}
+
+<!-- Owl Carousel -->
+<script src="{{ "js/owl/owl.carousel.js" | relURL }}"></script>
+
+<!-- Custom JavaScript -->
+<script src="{{ "js/custom/front.js" | relURL }}" defer></script>
+<script src="{{ "js/slick/slick.min.js" | relURL }}"></script>
+<script src="{{ "js/slick/slick.js" | relURL }}" defer></script>
+<script src="{{ "js/sticky.js" | relURL }}"></script>
+<script src="{{ "js/menu.js" | relURL }}" defer></script>
+
+<!-- Fix für jQuery unload-Event -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log('jQuery Version:', jQuery.fn.jquery);
+        console.log('OwlCarousel Version:', typeof $.fn.owlCarousel === 'function' ? 'Geladen' : 'Nicht geladen');
+
+        // Entfernt das `unload`-Event aus jQuery
+        if (jQuery.event.special.unload) {
+            jQuery.event.special.unload = {
+                remove: function () {}
+            };
+            console.log("unload-Event in jQuery deaktiviert.");
+        } else {
+            console.log("Kein unload-Event in jQuery gefunden.");
+        }
+
+        // Falls `slick.js` noch `unload` verwendet, ersetzen durch `beforeunload`
+        window.addEventListener("beforeunload", function () {
+            console.log("Seite wird verlassen");
+        });
+    });
+</script>

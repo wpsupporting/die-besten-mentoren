@@ -1,0 +1,87 @@
+default:
+  title: "Die besten Mentoren - Online-Kurse und Seminare für deine persönliche und berufliche Weiterentwicklung"
+  description: "Entdecke die Online-Masterclass-Seminare von den Besten der Besten"
+  author: 
+    - "Kurt Tepperwein"
+    - "Joe Dispenza"
+  keywords:
+    - "younity"
+    - "Kurt Tepperwein Seminare"
+    - "Kurt Tepperwein Akademie"
+    - "Tepperwein"
+    - "Joe Dispenza Seminare"
+    - "Meditation"
+    - "Leben aus dem Sein"
+    - "Leben im erwachten Bewusstsein"
+    - "Leben im Jetzt"
+    - "Achtsamkeitsübungen"
+    - "Mentale Freiheit"
+    - "Selbstcoaching"
+    - "Innere Ruhe"
+    - "Wahrhaftigkeit"
+    - "Freiheit durch Bewusstsein"
+    - "Kurse"
+    - "Seminare"
+    - "Selbstfindung"
+    - "Achtsamkeit"
+    - "Weisheiten"
+    - "Bewusstes Leben"
+    - "Spiritualität"
+    - "Persönlichkeitsentwicklung"
+    - "Erwachen"
+    - "Lebensweisheiten"
+    - "Meditationskurse"
+  tags:
+    - "Kurt Tepperwein"
+    - "Seminare"
+    - "Spiritualität"
+    - "Kurse"
+  categories:
+    - "Meditation"
+    - "Achtsamkeit"
+    - "Bewusstsein"
+    - "Selbstfindung"
+
+pages:
+  "/kurse":
+    title: "Online Kurse und Seminare von den besten Mentoren"
+    description: "Lerne von den besten Mentoren und entdecke die Top-Online-Seminare für Achtsamkeit, Meditation und Selbstentwicklung."
+    keywords:
+      - "Online-Kurse"
+      - "Seminare"
+      - "Achtsamkeit"
+      - "Meditation"
+      - "Selbstfindung"
+      - "Mentoren"
+    tags:
+      - "Kurse"
+      - "Meditation"
+      - "Spiritualität"
+    categories:
+      - "Persönlichkeitsentwicklung"
+      - "Mentale Freiheit"
+
+  "/mentoren":
+    title: "Die besten Mentoren"
+    description: "Entdecken Sie unsere erfahrenen Mentoren und ihre inspirierenden Weisheiten."
+    keywords:
+      - "Mentoren"
+      - "Lebensberatung"
+      - "Persönlichkeitsentwicklung"
+    tags:
+      - "Mentoren"
+      - "Beratung"
+      - "Erwachen"
+    categories:
+      - "Mentoren-Kategorie"
+
+patterns:
+  meditation: "Meditation"
+  achtsamkeit: "Achtsamkeit"
+  bewusstsein: "Bewusstsein"
+  seminar: "Seminar"
+  selbstfindung: "Selbstfindung"
+  spiritualität: "Spiritualität"
+  persönlichkeit: "Persönlichkeitsentwicklung"
+  erwachen: "Erwachen"
+  lebensweisheit: "Lebensweisheiten"

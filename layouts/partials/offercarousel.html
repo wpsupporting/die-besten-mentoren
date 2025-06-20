@@ -1,0 +1,124 @@
+{{ $kurse := where .Site.RegularPages "Type" "kurse" }}
+{{ if gt (len $kurse) 0 }}
+<!-- CSS-Datei für das Offer-Carousel -->
+<link rel="stylesheet" href="{{ "css/offercarousel/offercarousel.css" | relURL }}">
+<script src="{{ "js/offercarousel/offercarousel.js" | relURL }}" defer></script>
+<section>
+    <div class="offer-carousel">
+        <div class="offer-dark-mask"></div>
+        <!-- Navigationspfeile -->
+        <button class="offer-carousel-arrow left">‹</button>
+        <button class="offer-carousel-arrow right">›</button>
+        <div class="offer-container">
+            <div class="offer-owl-carousel"
+                data-loop="{{ .Site.Params.offercarousel.loop }}"
+                data-autoplay="{{ .Site.Params.offercarousel.auto_play }}"
+                data-slide-speed="{{ .Site.Params.offercarousel.slide_speed }}"
+                data-pagination-speed="{{ .Site.Params.offercarousel.pagination_speed }}"
+                data-responsive-small="{{ .Site.Params.offercarousel.responsive_small }}"
+                data-responsive-medium="{{ .Site.Params.offercarousel.responsive_medium }}"
+                data-responsive-large="{{ .Site.Params.offercarousel.responsive_large }}"
+                data-breakpoint-small="{{ .Site.Params.offercarousel.breakpoint_small }}"
+                data-breakpoint-medium="{{ .Site.Params.offercarousel.breakpoint_medium }}"
+                data-breakpoint-large="{{ .Site.Params.offercarousel.breakpoint_large }}">
+                <!-- Carousel-Inhalte -->
+                {{ range sort $kurse "Params.weight" }}
+                <div class="offer-item">
+                    <div class="offer-carousel-row">
+                        <!-- Bildbereich -->
+                        <div class="offer-carousel-col-img">
+                            <a href="{{ .RelPermalink }}">
+                                {{ if .Params.mdnz_kurse_archiv_image_ }}
+                                <img class="offer-carousel-img" src="{{ .Params.mdnz_kurse_archiv_image_ | relURL }}" alt="{{ .Params.mdnz_kurse_archiv_title_ }}">
+                                {{ else if .Params.mdnz_kurse_single_image_ }}
+                                <img class="offer-carousel-img" src="{{ .Params.mdnz_kurse_single_image_ | relURL }}" alt="{{ .Params.mdnz_kurse_archiv_title_ }}">
+                                {{ else if .Site.Data.contentfallbackimage.fallback_image }}
+                                <img class="offer-carousel-img" src="{{ site.Data.contentfallbackimage.fallback_image | relURL }}" alt="Standardbild">
+                                {{ else }}
+                                <span class="offer-carousel-no-image">Kein Bild verfügbar</span>
+                                {{ end }}
+                            </a>
+                        </div>
+
+                        <!-- Textbereich -->
+                        <div class="offer-carousel-col-text">
+                            <h1>{{ .Params.mdnz_kurse_archiv_title_ | default .Params.title }}</h1>
+                            <p>{{ .Params.mdnz_kurse_archiv_shortdescription_ | markdownify }}</p>
+
+                            <!-- Sonderangebot -->
+                            <div class="offer-carousel-special-offer-outer">
+                                {{ if .Params.mdnz_kurse_single_special_offer_price_ }}
+                                <p class="offer-carousel-special-offer">
+                                    {{ .Params.mdnz_kurse_single_special_offer_description_ | default "Sonderaktion: nur für kurze Zeit!" }}
+                                </p>
+                                {{ else }}
+                                <p class="offer-carousel-no-offer">Sonderaktion: nur für kurze Zeit!</p>
+                                {{ end }}
+                            </div>
+
+                            <!-- Preise -->
+                            <div class="offer-carousel-price-container">
+                                {{ if and .Params.mdnz_kurse_single_price_ (not .Params.mdnz_kurse_single_special_offer_price_) }}
+                                <span class="offer-carousel-price">{{ .Params.mdnz_kurse_single_price_ }}</span>
+                                {{ else if .Params.mdnz_kurse_single_special_offer_price_ }}
+                                <span class="offer-carousel-old-price"><s>{{ .Params.mdnz_kurse_single_price_ }}</s></span>
+                                <span class="offer-carousel-special-price">{{ .Params.mdnz_kurse_single_special_offer_price_ }}</span>
+                                {{ end }}
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="offer-carousel-button-container">
+                                {{ if and .Params.mdnz_show_cta_kurse_landingpage .Params.mdnz_affiliateLinkLandingpage }}
+                                <a href="{{ .Params.mdnz_prettyLinkLandingpage }}"
+                                   data-redirect-url="{{ .Params.mdnz_affiliateLinkLandingpage }}"
+                                   onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;"
+                                   class="offer-carousel-btn offer-carousel-btn-blue"
+                                   target="_blank" rel="nofollow noopener">
+                                    <span class="offer-carousel-button-icon">
+                                        <i class="fas fa-info-circle"></i>
+                                    </span>
+                                    <span class="offer-carousel-button-text">Mehr erfahren</span>
+                                </a>
+                                {{ end }}
+
+                                {{ if and (not .Params.mdnz_kurse_single_special_offer_price_) .Params.mdnz_affiliateLink_ogskd }}
+                                <a href="{{ .Params.mdnz_prettyLink_ogskd }}"
+                                   data-redirect-url="{{ .Params.mdnz_affiliateLink_ogskd }}"
+                                   onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;"
+                                   class="offer-carousel-btn offer-carousel-btn-green"
+                                   target="_blank" rel="nofollow noopener">
+                                    <span class="offer-carousel-button-icon">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </span>
+                                    <span class="offer-carousel-button-text">Jetzt ansehen</span>
+                                </a>
+                                {{ end }}
+
+                                {{ if .Params.mdnz_kurse_single_special_offer_price_ }}
+                                <a href="{{ .Params.mdnz_prettyLink_mgskd }}"
+                                   data-redirect-url="{{ .Params.mdnz_affiliateLink_mgskd }}"
+                                   onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;"
+                                   class="offer-carousel-btn offer-carousel-btn-red"
+                                   target="_blank" rel="nofollow noopener">
+                                    <span class="offer-carousel-button-icon">
+                                        <i class="fas fa-tags"></i>
+                                    </span>
+                                    <span class="offer-carousel-button-text">Sonderangebot sichern</span>
+                                </a>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+            <!-- Custom Dots -->
+            <div class="offer-owl-dots">
+                {{ range $index, $value := $kurse }}
+                <span class="custom-dot" data-index="{{ $index }}"></span>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

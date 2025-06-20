@@ -1,0 +1,12 @@
+{{ range .Site.Data.settings.robots.robots }}
+User-agent: {{ .user_agent }}
+{{ range .disallow }}
+Disallow: {{ . }}
+{{ end }}
+{{ range .allow }}
+Allow: {{ . }}
+{{ end }}
+{{ with .sitemap }}
+Sitemap: {{ . }}
+{{ end }}
+{{ end }}

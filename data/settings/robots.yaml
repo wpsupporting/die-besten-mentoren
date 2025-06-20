@@ -1,0 +1,13 @@
+robots:
+  - user_agent: "*"
+    disallow:
+      - "/layouts/"
+      - "/static/"
+      - "/archetypes/"
+      - "/resources/"
+      - "/assets/"
+      - "/private/"
+      - "/drafts/"
+      - "/test/"
+    allow: []
+    sitemap: "https://www.die-besten-mentoren.de/sitemap.xml"

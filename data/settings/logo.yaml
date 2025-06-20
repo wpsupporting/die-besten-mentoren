@@ -1,0 +1,9 @@
+logo:
+  enabled: true
+  show_text: true
+  show_subtext: true
+  show_image: false
+  text: "Die-besten-Mentoren.de"
+  subtext: "Für deine persönliche und berufliche Weiterentwicklung"
+  image: ""
+  image_small: ""

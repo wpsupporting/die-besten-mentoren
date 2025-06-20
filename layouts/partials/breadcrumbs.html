@@ -1,0 +1,17 @@
+<div id="heading-breadcrumbs" class="custom-breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="{{ .Site.BaseURL }}">Home</a></li>
+                    <li class="active">
+                        {{ .Params.title | default .Title }}
+                        {{ if .Params.description }}
+                            - {{ (index (split .Params.description ".") 0) }}
+                        {{ end }}
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

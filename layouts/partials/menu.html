@@ -1,0 +1,43 @@
+<nav class="navbar">
+  <button class="menu-toggle">&#9776;</button>
+  <ul class="menu-list">
+    {{- $menuData := index site.Data.settings "menudata" "menu" -}}
+    {{- if and $menuData (isset $menuData "main") -}}
+      {{- $current := . -}}
+      {{- range sort (index $menuData "main") "weight" -}}
+        {{- $item := . -}}
+
+        {{- if and (reflect.IsMap $item) (index $item "enabled") -}} <!-- Hauptmenü nur wenn `enabled: true` -->
+          {{- $active := "" -}}
+          {{- $url := index $item "url" | default "" -}}
+
+          {{- if eq $current.RelPermalink $url -}}
+            {{- $active = "active" -}}
+          {{- end -}}
+
+          {{- if isset $item "children" -}}
+            <li class="dropdown">
+              <a href="{{ $url }}" class="dropbtn">
+                {{ index $item "title" }} <span class="menu-caret"></span>
+              </a>
+              <ul class="dropdown-content">
+                {{- range index $item "children" -}}
+                  {{- if and (reflect.IsMap .) (index . "enabled") -}}
+                    <li><a href="{{ index . "url" }}">{{ index . "title" }}</a></li>
+                  {{- end -}}
+                {{- end -}}
+              </ul>
+            </li>
+          {{- else -}}
+            <li class="{{ $active }}">
+              <a href="{{ $url }}">{{ index $item "title" }}</a>
+            </li>
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- else -}}
+      <p>⚠️ Hauptmenü-Daten nicht gefunden oder fehlerhaft.</p>
+    {{- end -}}
+  </ul>
+</nav>
+<script src="{{ "js/sticky.js" | relURL }}"></script>

@@ -1,0 +1,25 @@
+{{ if .Site.Data.settings.copyright.enable }}
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            <!-- Copyright-Text -->
+            {{ if .Site.Data.settings.copyright.text }}
+            <p class="pull-left">{{ .Site.Data.settings.copyright.text | safeHTML }}</p>
+            {{ end }}
+
+            <!-- Horizontales Menü -->
+            <ul class="pull-right menu-horizontal">
+                {{ range .Site.Data.settings.menudata.menu.copyright }}
+                <li>
+                    {{ if and .url (ne .url "0") }}
+                    <a href="{{ .url }}">{{ .title }}</a>
+                    {{ else }}
+                    <span>{{ .title }}</span>
+                    {{ end }}
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+</div>
+{{ end }}

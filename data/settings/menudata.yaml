@@ -1,0 +1,87 @@
+menu:
+  main:
+    - title: "Home"
+      url: "/"
+      identifier: "menu.home"
+      weight: 1
+      enabled: true
+
+    - title: "Mentoren"
+      url: "/mentoren/"
+      identifier: "menu.mentoren"
+      weight: 2
+      enabled: true
+
+    - title: "Kurse"  # Jetzt direkt klickbar!
+      url: "/kurse/"
+      identifier: "menu.kurse"
+      weight: 3
+      enabled: true
+      children:
+        - title: "Tepperwein Masterclass"
+          url: "/kurse/kurt-tepperwein-exklusiver-masterclasskurs/"
+          enabled: false
+
+  footer:
+    - title: "Kurse"
+      url: "/kurse/"
+      enabled: true
+
+    - title: "Mentoren"
+      url: "/mentoren/"
+      enabled: true
+
+    - title: "Home"
+      url: "/home/"
+      enabled: true
+
+  copyright:
+    - title: "Impressum"
+      url: "/impressum/"
+      enabled: true
+
+    - title: "Datenschutz"
+      url: "/datenschutz/"
+      enabled: true
+
+  sidebar_global:
+    - title: "Startseite"
+      url: "/"
+      enabled: true
+
+    - title: "Alle Kurse"
+      url: "/kurse/"
+      enabled: true
+
+    - title: "Häufige Fragen"
+      url: "/faq/"
+      enabled: false
+
+  sidebar_sub_global:
+    - title: "Kategorien"
+      url: "/kursekategorien/"
+      enabled: true
+
+    - title: "Beliebte Mentoren"
+      url: "/mentoren/"
+      enabled: false
+
+    - title: "Meditation"
+      url: "/kurse/meditation/"
+      enabled: false
+
+  sidebar_pages:
+    "/kurse/":
+      - title: "Kursübersicht"
+        url: "/kurse/"
+        enabled: true
+      - title: "Meditation"
+        url: "/kurse/meditation/"
+        enabled: false
+
+    "/kurse/kurt-tepperwein-exklusiver-masterclasskurs/":
+      - title: "Leben aus dem Sein"
+        url: "https://lebenausdemsein.de"
+        target: "_blank"
+        nofollow: false
+        enabled: true

@@ -1,0 +1,32 @@
+{{ if .Site.Params.widgets.mentorenkategorien }}
+    {{ if isset .Site.Taxonomies "mentorenkategorien" }}
+        {{ if not (eq (len .Site.Taxonomies.mentorenkategorien) 0) }}
+        <div class="panel panel-default sidebar-menu">
+            <div class="panel-heading">
+                <h3 class="panel-title">Mentorenkategorien</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                    {{ range $name, $items := .Site.Taxonomies.mentorenkategorien }}
+                    <li>
+                        <a href="{{ "mentorenkategorien/" | relLangURL }}{{ $name | urlize | lower }}" title="Zeige Mentoren in der Kategorie {{ $name | title }}">
+                            {{ $name | title }} ({{ len $items }})
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+        {{ else }}
+        <!-- Meldung, wenn keine Kategorien vorhanden sind -->
+        <div class="panel panel-default sidebar-menu">
+            <div class="panel-heading">
+                <h3 class="panel-title">Mentorenkategorien</h3>
+            </div>
+            <div class="panel-body">
+                <p>Keine Mentorenkategorien gefunden.</p>
+            </div>
+        </div>
+        {{ end }}
+    {{ end }}
+{{ end }}

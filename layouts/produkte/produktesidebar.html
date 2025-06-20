@@ -1,0 +1,22 @@
+<div class="sidebar">
+    <div class="panel panel-default sidebar-menu">
+        <div class="panel-heading">
+            <h3 class="panel-title">produktekategorien</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked">
+                {{ if gt (len .Site.Taxonomies.produktekategorien) 0 }}
+                    {{ range $name, $items := .Site.Taxonomies.produktekategorien }}
+                    <li>
+                        <a href="{{ "produktekategorien/" | relLangURL }}{{ $name | urlize | lower }}">
+                            {{ $name | title }} ({{ len $items }})
+                        </a>
+                    </li>
+                    {{ end }}
+                {{ else }}
+                    <li>Keine Kategorien verfügbar</li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+</div>

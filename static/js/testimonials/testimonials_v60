@@ -1,0 +1,55 @@
+document.addEventListener('DOMContentLoaded', function () {
+    // Hole das OwlCarousel-Element
+    const owlCarousel = $('.testimonials-owl-carousel');
+
+    // Initialisiere OwlCarousel mit Werten aus den data-Attributen
+    owlCarousel.owlCarousel({
+        loop: owlCarousel.data('loop') === true,
+        autoplay: owlCarousel.data('autoplay') === true,
+        autoplayTimeout: owlCarousel.data('slide-speed') || 5000,
+        dots: false, // wir verwenden Custom Dots
+        responsive: {
+            0: { items: 1 },
+            [owlCarousel.data('breakpoint-small') || 480]: { items: 1 },
+            [owlCarousel.data('breakpoint-medium') || 768]: { items: 1 },
+            [owlCarousel.data('breakpoint-large') || 1024]: { items: 1 },
+        }
+    });
+
+    // Pfeilnavigation
+    const leftArrow = document.querySelector('.testimonials-carousel-arrow.left');
+    const rightArrow = document.querySelector('.testimonials-carousel-arrow.right');
+
+    if (leftArrow) {
+        leftArrow.addEventListener('click', function () {
+            owlCarousel.trigger('prev.owl.carousel');
+        });
+    }
+    if (rightArrow) {
+        rightArrow.addEventListener('click', function () {
+            owlCarousel.trigger('next.owl.carousel');
+        });
+    }
+
+    // Custom Dots
+    const customDots = document.querySelectorAll('.testimonials-owl-dots .custom-dot');
+    customDots.forEach((dot, index) => {
+        dot.addEventListener('click', function () {
+            owlCarousel.trigger('to.owl.carousel', [index, 300]);
+        });
+    });
+
+    // Synchronisation der Dots bei Slide-Wechsel
+    owlCarousel.on('changed.owl.carousel', function (event) {
+        // OwlCarousel erstellt Clone-Elemente, daher Index-Justierung
+        const currentIndex = event.item.index - event.relatedTarget._clones.length / 2;
+        const dotsLength = customDots.length;
+
+        // Sichere Berechnung des aktiven Index per Modulo
+        const activeIndex = ((currentIndex % dotsLength) + dotsLength) % dotsLength;
+
+        customDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === activeIndex);
+        });
+    });
+});

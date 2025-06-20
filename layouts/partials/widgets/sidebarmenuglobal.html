@@ -1,0 +1,14 @@
+<div class="panel panel-default sidebar-menu">
+    <div class="panel-heading">
+        <h3 class="panel-title">Globales Menü</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            {{ range .Site.Data.settings.menudata.menu.sidebar_global }}
+                {{ if .enabled }}
+                    <li><a href="{{ .url }}">{{ .title }}</a></li>
+                {{ end }}
+            {{ end }}
+        </ul>
+    </div>
+</div>

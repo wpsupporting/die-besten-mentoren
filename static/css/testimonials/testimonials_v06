@@ -1,0 +1,201 @@
+/* testimonials.css */
+
+/* Äußeres Container-Element für die Testimonials-Sektion */
+.testimonials-carousel {
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Optional Background-Image:
+    background-image: url('/img/testimonials/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    */
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    overflow: hidden;
+    margin-top: 40px;
+}
+
+/* Ggf. dunkle Maske (optional) */
+.testimonials-dark-mask {
+    /* Falls du eine Overlay-Maske möchtest, z.B.:
+    background: rgba(0,0,0,0.3);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    */
+}
+
+/* Container, der das Carousel und die Dots umschließt */
+.testimonials-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: rgba(248, 249, 250, 0.4); /* leicht transparentes Grau */
+    border-radius: 10px;
+    position: relative; /* Damit Pfeile absolut positioniert werden können */
+    z-index: 2; /* Über der ggf. dunklen Maske */
+}
+
+/* OwlCarousel: Anfangs ausblenden, um hässliches "Springen" zu vermeiden */
+.testimonials-owl-carousel {
+    visibility: hidden; /* wird durch .owl-loaded aufgehoben */
+    height: 0;
+    overflow: hidden;
+    transition: visibility 0s, height 0s;
+}
+
+/* Sobald OwlCarousel initialisiert (owl-loaded) ist, sichtbar machen */
+.testimonials-owl-carousel.owl-loaded {
+    visibility: visible;
+    height: auto;
+}
+
+/* Einzelnes Testimonial-Slide */
+.testimonials-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Der eigentliche Inhalt pro Slide */
+.testimonials-content {
+    max-width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Überschrift / Motto */
+.testimonials-content h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+/* Text */
+.testimonials-content p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Unterer Bereich mit Avatar, Name und Position */
+.testimonials-bottom {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Avatar-Bildchen */
+.testimonials-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Name */
+.testimonials-bottom h5 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+/* Position / Rolle */
+.testimonials-bottom p {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0;
+}
+
+/* Pfeilnavigation */
+.testimonials-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100; /* über dem Slide */
+    transition: background-color 0.3s ease;
+}
+
+.testimonials-carousel-arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.testimonials-carousel-arrow.left {
+    left: 10px;
+}
+
+.testimonials-carousel-arrow.right {
+    right: 10px;
+}
+
+/* Custom Dots */
+.testimonials-owl-dots {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.testimonials-owl-dots .custom-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.testimonials-owl-dots .custom-dot.active {
+    background-color: #007bff; /* Blaue Färbung für aktiven Dot */
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+    .testimonials-content {
+        max-width: 90%;
+        padding: 15px;
+    }
+    .testimonials-content h3 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonials-content h3 {
+        font-size: 1.2rem;
+    }
+    .testimonials-content p {
+        font-size: 0.9rem;
+    }
+    .testimonials-avatar {
+        width: 50px;
+        height: 50px;
+    }
+}

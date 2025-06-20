@@ -1,0 +1,189 @@
+<!-- layouts/_default/kategorie.html (Beispielpfad) -->
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar -->
+            {{ if ne .Kind "taxonomyTerm" }}
+            <div class="col-md-2 col-sm-12" id="left-column">
+                {{ template "kurse/kursesidebar.html" . }}
+            </div>
+            {{ end }}
+
+            <!-- Hauptinhalt -->
+            <div class="{{ if eq .Kind "taxonomyTerm" }}col-12{{ else }}col-md-10 col-sm-12{{ end }}" id="content-listing">
+                <div class="row">
+                    {{ $paginator := .Paginate (where .Pages "Type" "kurse") }}
+                    {{ range $page := $paginator.Pages }}
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 content-item">
+                        <section class="content">
+                            <!-- Titel -->
+                            <h2 class="content-title">
+                                {{ $page.Params.mdnz_kurse_archiv_title_ | default $page.Params.mdnz_kurse_single_title_ | default $page.Title }}
+                            </h2>
+  
+                            <!-- Bild -->
+                            <div class="image">
+                                <a href="{{ $page.Permalink }}">
+                                    {{ if $page.Params.mdnz_kurse_archiv_image_ }}
+                                        <img src="{{ $page.Params.mdnz_kurse_archiv_image_ | relURL }}" alt="{{ $page.Params.mdnz_kurse_archiv_title_ }}">
+                                    {{ else if $page.Params.mdnz_kurse_single_image_ }}
+                                        <img src="{{ $page.Params.mdnz_kurse_single_image_ | relURL }}" alt="{{ $page.Params.mdnz_kurse_archiv_title_ }}">
+                                    {{ else if .Site.Data.contentfallbackimage.fallback_image }}
+                                        <img src="{{ .Site.Data.contentfallbackimage.fallback_image | relURL }}" alt="Standardbild">
+                                    {{ else }}
+                                        <span class="no-image">Kein Bild verfügbar</span>
+                                    {{ end }}
+                                </a>
+                            </div>
+  
+                            <!-- Autor -->
+                            {{ if $page.Params.author }}
+                            <div class="content-author">
+                                <a href="{{ $page.Params.authorlink | default "#" }}" target="_blank" rel="nofollow">
+                                    {{ $page.Params.author }}
+                                </a>
+                            </div>
+                            {{ end }}
+  
+                            <!-- Kurzbeschreibung -->
+                            <p class="short-description">
+                                {{ if $page.Params.mdnz_kurse_archiv_shortdescription_ }}
+                                    {{ $page.Params.mdnz_kurse_archiv_shortdescription_ }}
+                                {{ else }}
+                                    {{ $page.Params.mdnz_kurse_single_description_ | markdownify | plainify | truncate 150 }}
+                                {{ end }}
+                            </p>
+  
+                            <!-- Artikelnummer -->
+                            {{ if $page.Params.mdnz_kurse_artikelnr }}
+                            <div class="content-artikelnr">
+                                <p>Artikel-Nr: {{ $page.Params.mdnz_kurse_artikelnr }}</p>
+                            </div>
+                            {{ end }}
+  
+                            <!-- Preise und Sonderangebot -->
+                            <div class="special-offer-outer">
+                                <div class="special-offer-inner">
+                                    {{ if $page.Params.mdnz_kurse_single_special_offer_price_ }}
+                                        <p class="special-offer">
+                                            {{ $page.Params.mdnz_kurse_single_special_offer_description_ | default "" }}
+                                        </p>
+                                    {{ else }}
+                                        <p class="no-offer">
+                                            Sonderaktion: nur für kurze Zeit!
+                                        </p>
+                                    {{ end }}
+                                </div>
+                            </div>
+  
+                            <!-- Buttons & Preise -->
+                            <div class="price-buttons-container">
+                                <div class="price-container {{ if $page.Params.mdnz_kurse_single_special_offer_price_ }}special-offer-active{{ end }}">
+                                    {{ if and $page.Params.mdnz_kurse_single_price_ (not $page.Params.mdnz_kurse_single_special_offer_price_) }}
+                                        <span class="price">{{ $page.Params.mdnz_kurse_single_price_ }}</span>
+                                    {{ else if $page.Params.mdnz_kurse_single_special_offer_price_ }}
+                                        <span class="old-price"><s>{{ $page.Params.mdnz_kurse_single_price_ }}</s></span>
+                                        <span class="special-price">{{ $page.Params.mdnz_kurse_single_special_offer_price_ }}</span>
+                                    {{ end }}
+                                </div>
+  
+                                <!-- Buttons -->
+                                {{ $numButtons := 0 }}
+                                {{ if and $page.Params.mdnz_show_cta_kurse_landingpage $page.Params.mdnz_affiliateLinkLandingpage }}
+                                    {{ $numButtons = add $numButtons 1 }}
+                                {{ end }}
+                                {{ if and (not $page.Params.mdnz_kurse_single_special_offer_price_) $page.Params.mdnz_affiliateLink_ogskd }}
+                                    {{ $numButtons = add $numButtons 1 }}
+                                {{ end }}
+                                {{ if $page.Params.mdnz_kurse_single_special_offer_price_ }}
+                                    {{ $numButtons = add $numButtons 1 }}
+                                {{ end }}
+  
+                                <div class="buttons {{ if eq $numButtons 1 }}single{{ end }}">
+                                    {{ if and $page.Params.mdnz_show_cta_kurse_landingpage $page.Params.mdnz_affiliateLinkLandingpage }}
+                                    <a href="{{ $page.Params.mdnz_prettyLinkLandingpage }}" 
+                                       data-redirect-url="{{ $page.Params.mdnz_affiliateLinkLandingpage }}" 
+                                       onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;" 
+                                       title="{{ $page.Params.mdnz_prettyLinkLandingpage }}" 
+                                       target="_blank" 
+                                       rel="nofollow noopener" 
+                                       class="btn btn-landingpage">
+                                        <span class="button-icon">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+                                        <span class="button-text">
+                                            {{ $page.Params.cta_text_landingpage | default "Mehr erfahren" }}
+                                        </span>
+                                    </a>
+                                    {{ end }}
+  
+                                    {{ if and (not $page.Params.mdnz_kurse_single_special_offer_price_) $page.Params.mdnz_affiliateLink_ogskd }}
+                                    <a href="{{ $page.Params.mdnz_prettyLink_ogskd }}" 
+                                       data-redirect-url="{{ $page.Params.mdnz_affiliateLink_ogskd }}" 
+                                       onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;" 
+                                       title="{{ $page.Params.mdnz_prettyLink_ogskd }}" 
+                                       target="_blank" 
+                                       rel="nofollow noopener" 
+                                       class="btn btn-discount">
+                                        <span class="button-icon">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </span>
+                                        <span class="button-text">
+                                            {{ $page.Params.cta_text_ogskd | default "Jetzt ansehen" }}
+                                        </span>
+                                    </a>
+                                    {{ end }}
+  
+                                    {{ if $page.Params.mdnz_kurse_single_special_offer_price_ }}
+                                    <a href="{{ $page.Params.mdnz_prettyLink_mgskd }}" 
+                                       data-redirect-url="{{ $page.Params.mdnz_affiliateLink_mgskd }}" 
+                                       onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;" 
+                                       title="{{ $page.Params.mdnz.prettylink_mgskd }}" 
+                                       target="_blank" 
+                                       rel="nofollow noopener" 
+                                       class="btn btn-buy-now">
+                                        <span class="button-icon">
+                                            <i class="fas fa-tags"></i>
+                                        </span>
+                                        <span class="button-text">
+                                            {{ $page.Params.cta_text_mgskd | default "Sonderangebot sichern" }}
+                                        </span>
+                                    </a>
+                                    {{ end }}
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    {{ end }}
+                </div>
+  
+                <!-- Pagination -->
+                <div class="row">
+                    <div class="col-12">
+                        <nav aria-label="Page navigation">
+                            {{ template "_internal/pagination.html" . }}
+                        </nav>
+                    </div>
+                </div>
+            </div> <!-- /col-md-10 oder col-12 -->
+        </div>
+    </div>
+</div>
+  
+<!-- Optional: Skript, um .content-item auf gleiche Höhe zu setzen -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const container = document.querySelector("#content-listing");
+        if (!container) return;
+    
+        let maxHeight = 0;
+        const items = container.querySelectorAll(".content-item");
+        items.forEach(item => {
+            const height = item.offsetHeight;
+            if (height > maxHeight) maxHeight = height;
+        });
+        items.forEach(item => {
+            item.style.height = maxHeight + "px";
+        });
+    });
+</script>

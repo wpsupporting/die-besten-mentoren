@@ -1,0 +1,73 @@
+<footer id="footer">
+  <div class="container-fluid">
+    <div class="row text-center">
+      
+      <!-- kursebereich: Linke Spalte -->
+      <div class="col-md-6 col-sm-12 footer_kurse">
+        <h4>kurse</h4>
+        <div class="footer-kurse-entries">
+          <div class="row justify-content-center">
+            {{ range first 3 (where .Site.RegularPages "Type" "kurse") }}
+            <div class="col-md-4 col-sm-4 footer-kurse-item">
+              <section class="footer_kurse">
+                <!-- Titel -->
+                <h5 class="footer-kurse-title">
+                  {{ .Params.mdnz_kurse_archiv_title_ | default .Params.mdnz_kurse_single_title_ | default .Title }}
+                </h5>
+
+                <!-- Bild -->
+                <div class="footer-kurse-image">
+                  <a href="{{ .Permalink }}">
+                    {{ if .Params.mdnz_kurse_archiv_image_ }}
+                      <img 
+                        src="{{ .Params.mdnz_kurse_archiv_image_ | relURL }}" 
+                        alt="{{ .Params.mdnz_kurse_archiv_title_ }}" 
+                        class="img-thumbnail">
+                    {{ else if .Params.mdnz_kurse_single_image_ }}
+                      <img 
+                        src="{{ .Params.mdnz_kurse_single_image_ | relURL }}" 
+                        alt="{{ .Params.mdnz_kurse_archiv_title_ }}" 
+                        class="img-thumbnail">
+                    {{ else if .Site.Data.kursefallbackimage.fallback_image }}
+                      <img 
+                        src="{{ site.Data.kursefallbackimage.fallback_image | relURL }}" 
+                        alt="Standardbild" 
+                        class="img-thumbnail">
+                    {{ else }}
+                      <span class="no-image">Kein Bild verfügbar</span>
+                    {{ end }}
+                  </a>
+                </div>
+              </section>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Mittlere Spalte: Menü -->
+      <div class="col-md-3 col-sm-6">
+        <h4>Menü</h4>
+        <div class="menu-entries">
+          <ul>
+            {{ range .Site.Menus.footer }}
+              <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6 footer-hinweis-col">
+        {{ if .Site.Params.footerhinweis_enabled }}
+          {{ with site.Data.footerhinweis }}
+            <h4>{{ .title }}</h4>
+            <p>{{ .content | markdownify }}</p>
+          {{ else }}
+            <p>Hinweis konnte nicht geladen werden.</p>
+          {{ end }}
+        {{ end }}
+      </div>
+
+    </div>
+  </div>
+</footer>

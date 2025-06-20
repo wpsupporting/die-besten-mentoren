@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'Quicksand Regular';
+  src: url('/fonts/quicksand/Quicksand-Regular.woff2') format('woff2'),
+       url('/fonts/quicksand/Quicksand-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Quicksand SemiBold';
+  src: url('/fonts/quicksand/Quicksand-SemiBold.woff2') format('woff2'),
+       url('/fonts/quicksand/Quicksand-SemiBold.ttf') format('truetype');
+  font-weight:bold
+  font-style:normal;
+}
+
+@font-face {
+  font-family: 'Quicksand Bold';
+  src: url('/fonts/quicksand/Quicksand-Bold.woff2') format('woff2'),
+       url('/fonts/quicksand/Quicksand-Bold.ttf') format('truetype');
+  font-weight: bolder;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Quicksand Light';
+  src: url('/fonts/quicksand/Quicksand-Light.woff2') format('woff2'),
+       url('/fonts/quicksand/Quicksand-Light.ttf') format('truetype');
+  font-weight:lighter;
+  font-style: normal;
+}
+
+/* Nutzung */
+body {
+  font-family: 'Quicksand Regular', Arial, sans-serif;
+}
+
+h1 {
+  font-family: 'Quicksand Bold', Arial, sans-serif;
+}
+
+h2 {
+  font-family: 'Quicksand SemiBold', Arial, sans-serif;
+}
+
+p.light {
+  font-family: 'Quicksand Light', Arial, sans-serif;
+}

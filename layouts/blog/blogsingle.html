@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    {{ partial "headers.html" . }}
+    {{ partial "custom_headers.html" . }}
+</head>
+<body>
+    <div id="single-content">
+        {{ partial "top.html" . }}
+        {{ partial "nav.html" . }}
+
+        <!-- Breadcrumbs -->
+        <div id="heading-breadcrumbs">
+            {{ partial "breadcrumbs.html" . }}
+        </div>
+
+        <!-- Root-Container -->
+        <div class="container wider-container">
+            <!-- Zurück-Link -->
+            <a href="{{ .Site.BaseURL }}blog/" class="back-link">← Zurück zur blogliste</a>
+
+            <h2 class="single-content-title">
+                {{ .Params.mdnz_blog_archiv_title_ | default .Params.mdnz_blog_single_title_ | default .Title }}
+            </h2>
+
+            <div class="row">
+                <!-- Hauptinhalt mit Rahmen -->
+                <div class="col-lg-9 col-md-12 main-content-with-border">
+                    <div class="row">
+                        <!-- Linke Spalte: Bild (30%) -->
+                        <div class="col-lg-4 col-md-5 single-left-column">
+                            <div class="single-image">
+                                <a href="{{ .Permalink }}">
+                                    {{ if .Params.mdnz_blog_archiv_image_ }}
+                                        <img src="{{ .Params.mdnz_blog_archiv_image_ | relURL }}" alt="{{ .Params.mdnz_blog_archiv_title_ }}">
+                                    {{ else if .Params.mdnz_blog_single_image_ }}
+                                        <img src="{{ .Params.mdnz_blog_single_image_ | relURL }}" alt="{{ .Params.mdnz_blog_archiv_title_ }}">
+                                    {{ else if .Site.Data.blogfallbackimage.fallback_image }}
+                                        <img src="{{ .Site.Data.blogfallbackimage.fallback_image | relURL }}" alt="Standardbild">
+                                    {{ else }}
+                                        <span class="no-image">Kein Bild verfügbar</span>
+                                    {{ end }}
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Rechte Spalte: Text (70%) -->
+                        <div class="col-lg-8 col-md-7 single-right-column">
+                            <!-- Titel -->
+                            {{ if .Params.mdnz_blog_single_short_title_right }}
+                            <h3 class="single-short-title-right">
+                                {{ .Params.mdnz_blog_single_short_title_right }}
+                            </h3>
+                            {{ end }}
+
+                            <!-- Beschreibung -->
+                            {{ if .Params.mdnz_blog_single_shortdescription_right }}
+                            <div class="single-short-description">
+                                {{ .Params.mdnz_blog_single_shortdescription_right | markdownify }}
+                            </div>
+                            {{ end }}
+
+                            <!-- Artikelnummer -->
+                            {{ if .Params.mdnz_blog_artikelnr }}
+                            <div class="single-artikelnr">
+                                <strong>Artikel-Nr:</strong> {{ .Params.mdnz_blog_artikelnr }}
+                            </div>
+                            {{ end }}
+
+                            <!-- Sonderangebot -->
+                            {{ if .Params.mdnz_blog_single_special_offer_price_ }}
+                            <div class="single-special-offer-outer">
+                                <div class="single-special-offer-inner">
+                                    <p class="single-special-offer">
+                                        {{ .Params.mdnz_blog_single_special_offer_description_ | default "Sonderaktion: nur für kurze Zeit!" }}
+                                    </p>
+                                </div>
+                            </div>
+                            {{ end }}
+
+                            <!-- Preise -->
+                            <div class="single-price-container {{ if .Params.mdnz_blog_single_special_offer_price_ }}single-special-offer-active{{ end }}">
+                                {{ if and .Params.mdnz_blog_single_price_ (not .Params.mdnz_blog_single_special_offer_price_) }}
+                                    <span class="single-price">{{ .Params.mdnz_blog_single_price_ }}</span>
+                                {{ else if .Params.mdnz_blog_single_special_offer_price_ }}
+                                    <span class="single-old-price"><s>{{ .Params.mdnz_blog_single_price_ }}</s></span>
+                                    <span class="single-special-price">{{ .Params.mdnz_blog_single_special_offer_price_ }}</span>
+                                {{ end }}
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="single-buttons">
+                                {{ $numButtons := 0 }}
+                                {{ if and .Params.mdnz_show_cta_blog_landingpage .Params.mdnz_affiliateLinkLandingpage }}
+                                  {{ $numButtons = add $numButtons 1 }}
+                                {{ end }}
+                                {{ if and (not .Params.mdnz_blog_single_special_offer_price_) .Params.mdnz_affiliateLink_ogskd }}
+                                  {{ $numButtons = add $numButtons 1 }}
+                                {{ end }}
+                                {{ if .Params.mdnz_blog_single_special_offer_price_ }}
+                                  {{ $numButtons = add $numButtons 1 }}
+                                {{ end }}
+
+                                <div class="single-buttons {{ if eq $numButtons 1 }}single{{ end }}">
+                                    <!-- Landingpage Button -->
+                                    {{ if and .Params.mdnz_show_cta_blog_landingpage .Params.mdnz_affiliateLinkLandingpage }}
+                                    <a href="{{ .Params.mdnz_prettyLinkLandingpage }}" 
+                                       data-redirect-url="{{ .Params.mdnz_affiliateLinkLandingpage }}" 
+                                       onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;" 
+                                       title="{{ .Params.mdnz_prettyLinkLandingpage }}" 
+                                       target="_blank" 
+                                       rel="nofollow noopener" 
+                                       class="single-btn single-btn-landingpage">
+                                        <span class="single-button-icon">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+                                        <span class="single-button-text">
+                                            {{ .Params.cta_text_landingpage | default "Mehr erfahren" }}
+                                        </span>
+                                    </a>
+                                    {{ end }}
+
+                                    <!-- Originalpreis Button -->
+                                    {{ if and (not .Params.mdnz_blog_single_special_offer_price_) .Params.mdnz_affiliateLink_ogskd }}
+                                    <a href="{{ .Params.mdnz_prettyLink_ogskd }}" 
+                                       data-redirect-url="{{ .Params.mdnz_affiliateLink_ogskd }}" 
+                                       onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;" 
+                                       title="{{ .Params.mdnz_prettyLink_ogskd }}" 
+                                       target="_blank" 
+                                       rel="nofollow noopener" 
+                                       class="single-btn single-btn-discount">
+                                        <span class="single-button-icon">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </span>
+                                        <span class="single-button-text">
+                                            {{ .Params.cta_text_ogskd | default "Jetzt ansehen" }}
+                                        </span>
+                                    </a>
+                                    {{ end }}
+
+                                    <!-- Mit Rabatt bestellen Button -->
+                                    {{ if .Params.mdnz_blog_single_special_offer_price_ }}
+                                    <a href="{{ .Params.mdnz_prettyLink_mgskd }}" 
+                                       data-redirect-url="{{ .Params.mdnz_affiliateLink_mgskd }}" 
+                                       onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;" 
+                                       title="{{ .Params.mdnz.prettylink_mgskd }}" 
+                                       target="_blank" 
+                                       rel="nofollow noopener" 
+                                       class="single-btn single-btn-buy-now">
+                                        <span class="single-button-icon">
+                                            <i class="fas fa-tags"></i>
+                                        </span>
+                                        <span class="single-button-text">
+                                            {{ .Params.cta_text_mgskd | default "Sonderangebot sichern" }}
+                                        </span>
+                                    </a>
+                                    {{ end }}
+                                </div>
+                            </div>
+
+                            <!-- Hinweis -->
+                            {{ if .Params.mdnz_blog_single_hinweis }}
+                            <div class="single-hinweis">
+                                {{ .Params.mdnz_blog_single_hinweis | markdownify }}
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+
+                    <!-- Beschreibung direkt unterhalb -->
+                    <div class="description-container">
+                        <div class="long-description-container">
+                            {{ if .Params.mdnz_blog_single_description_title }}
+                            <h3 class="long-description-title">
+                                {{ .Params.mdnz_blog_single_description_title }}
+                            </h3>
+                            {{ end }}
+
+                            {{ if .Params.mdnz_blog_single_description_ }}
+                            <div class="single-long-description">
+                                {{ .Params.mdnz_blog_single_description_ | markdownify }}
+                            </div>
+                            {{ end }}
+
+                            <!-- Vollständiger Markdown-Inhalt -->
+                            <div class="single-full-content">
+                                {{ with .Content }}
+                                    {{ . }}
+                                {{ else }}
+                                    <p>Kein zusätzlicher Inhalt vorhanden.</p>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-3 col-md-12">
+                    <div class="sidebar-container">
+                        {{ template "blog/blogsidebar.html" . }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ partial "footer.html" . }}
+    </div>
+    {{ partial "scripts.html" . }}
+</body>
+</html>

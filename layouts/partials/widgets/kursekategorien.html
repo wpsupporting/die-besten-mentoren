@@ -1,0 +1,32 @@
+{{ if .Site.Params.widgets.kursekategorien }}
+    {{ if isset .Site.Taxonomies "kursekategorien" }}
+        {{ if not (eq (len .Site.Taxonomies.kursekategorien) 0) }}
+        <div class="panel panel-default sidebar-menu">
+            <div class="panel-heading">
+                <h3 class="panel-title">kursekategorien</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                    {{ range $name, $items := .Site.Taxonomies.kursekategorien }}
+                    <li>
+                        <a href="{{ "kursekategorien/" | relLangURL }}{{ $name | urlize | lower }}" title="Zeige kurse in der Kategorie {{ $name | title }}">
+                            {{ $name | title }} ({{ len $items }})
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+        {{ else }}
+        <!-- Meldung, wenn keine Kategorien vorhanden sind -->
+        <div class="panel panel-default sidebar-menu">
+            <div class="panel-heading">
+                <h3 class="panel-title">kursekategorien</h3>
+            </div>
+            <div class="panel-body">
+                <p>Keine kursekategorien gefunden.</p>
+            </div>
+        </div>
+        {{ end }}
+    {{ end }}
+{{ end }}

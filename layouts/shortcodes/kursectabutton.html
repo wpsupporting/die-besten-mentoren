@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="{{ "css/shortcode.css" | relURL }}">
+{{ with .Page.Params }}
+    {{ $numButtons := 0 }}
+    
+    <!-- Überprüfe die Bedingungen für jeden Button -->
+    {{ if and .mdnz_show_cta_kurse_landingpage .mdnz_affiliateLinkLandingpage }}
+        {{ $numButtons = add $numButtons 1 }}
+    {{ end }}
+    
+    {{ if and (not .mdnz_kurse_single_special_offer_price_) .mdnz_affiliateLink_ogskd }}
+        {{ $numButtons = add $numButtons 1 }}
+    {{ end }}
+    
+    {{ if .mdnz_kurse_single_special_offer_price_ }}
+        {{ $numButtons = add $numButtons 1 }}
+    {{ end }}
+    
+    <!-- Wenn $numButtons > 0, dann Buttons rendern -->
+    {{ if gt $numButtons 0 }}
+        <div class="single-buttons {{ if eq $numButtons 1 }}single{{ end }}">
+            
+            <!-- Landingpage Button -->
+            {{ if and .mdnz_show_cta_kurse_landingpage .mdnz_affiliateLinkLandingpage }}
+                <a href="{{ .mdnz_prettyLinkLandingpage }}" 
+                   data-redirect-url="{{ .mdnz_affiliateLinkLandingpage }}" 
+                   onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;" 
+                   title="{{ .mdnz_prettyLinkLandingpage }}" 
+                   target="_blank" 
+                   rel="nofollow noopener" 
+                   class="single-btn single-btn-landingpage">
+                    <span class="single-button-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                    <span class="single-button-text">
+                        {{ .cta_text_landingpage | default "Mehr erfahren" }}
+                    </span>
+                </a>
+            {{ end }}
+            
+            <!-- Originalpreis Button -->
+            {{ if and (not .mdnz_kurse_single_special_offer_price_) .mdnz_affiliateLink_ogskd }}
+                <a href="{{ .mdnz_prettyLink_ogskd }}" 
+                   data-redirect-url="{{ .mdnz_affiliateLink_ogskd }}" 
+                   onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;" 
+                   title="{{ .mdnz_prettyLink_ogskd }}" 
+                   target="_blank" 
+                   rel="nofollow noopener" 
+                   class="single-btn single-btn-discount">
+                    <span class="single-button-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </span>
+                    <span class="single-button-text">
+                        {{ .cta_text_ogskd | default "Jetzt ansehen" }}
+                    </span>
+                </a>
+            {{ end }}
+            
+            <!-- Mit Rabatt bestellen Button -->
+            {{ if .mdnz_kurse_single_special_offer_price_ }}
+                <a href="{{ .mdnz_prettyLink_mgskd }}" 
+                   data-redirect-url="{{ .mdnz_affiliateLink_mgskd }}" 
+                   onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;" 
+                   title="{{ .mdnz.prettylink_mgskd }}" 
+                   target="_blank" 
+                   rel="nofollow noopener" 
+                   class="single-btn single-btn-buy-now">
+                    <span class="single-button-icon">
+                        <i class="fas fa-tags"></i>
+                    </span>
+                    <span class="single-button-text">
+                        {{ .cta_text_mgskd | default "Sonderangebot sichern" }}
+                    </span>
+                </a>
+            {{ end }}
+
+        </div>
+    {{ end }}
+{{ end }}

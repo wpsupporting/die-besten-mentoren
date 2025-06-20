@@ -1,0 +1,62 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Generate Lokal Folder",
+            "type": "shell",
+            "command": "hugo",
+            "args": [
+                "--config=config-dev.toml",
+                "-d",
+                "local-mentoren-der-neuen-zeit",
+                "server",
+                "--bind",
+                "127.0.0.1",
+                "--port",
+                "1313"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Generiert die lokale Version und startet den lokalen Server"
+        },
+        {
+            "label": "Generate Public Folder",
+            "type": "shell",
+            "command": "hugo",
+            "args": [
+                "--config=config.toml",
+                "-d",
+                "public-mentoren-der-neuen-zeit"
+            ],
+            "problemMatcher": [],
+            "group": "build",
+            "detail": "Generiert das Produktionsverzeichnis"
+        },
+        {
+            "label": "Start SSH-Agent",
+            "type": "shell",
+            "command": "C:/Program Files/Git/bin/bash.exe",
+            "args": [
+                "-c",
+                "eval $(ssh-agent -s) && ssh-add C:/Users/Miguel/.ssh/id_rsa_global_harmony"
+            ],
+            "problemMatcher": [],
+            "detail": "Startet den SSH-Agenten und fügt den Schlüssel hinzu"
+        },
+        {
+            "label": "Upload to public-mentoren-der-neuen-zeit",
+            "type": "shell",
+            "command": "C:/Program Files/Git/bin/bash.exe",
+            "args": [
+                "-c",
+                "eval $(ssh-agent -s) && ssh-add 'C:/Users/Miguel/.ssh/id_rsa_global_harmony' && 'C:/Program Files/cwRsync/bin/rsync/' -avz --progress --exclude .git --exclude node_modules '/d/webprojekte/hugoroot/kt-hugo/public-mentoren-der-neuen-zeit/' 'ssh-w01ecfbb@w01f16f1.kasserver.com:/www/htdocs/w01ecfbb/public-mentoren-der-neuen-zeit/'"
+            ],
+            "problemMatcher": [],
+            "dependsOn": "Start SSH-Agent",
+            "detail": "Lädt Dateien per rsync hoch"
+        }
+    ]
+}

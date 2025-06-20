@@ -1,0 +1,28 @@
+{{ if eq hugo.Environment "development" }}
+  {{ $missing := slice }}
+
+  {{ range .Site.RegularPages }}
+    {{ $url := .Permalink }}
+    {{ $exists := false }}
+
+    <!-- Prüfen, ob URL bereits in sitemap.yaml enthalten ist -->
+    {{ range .Site.Data.settings.sitemap.sitemap }}
+      {{ if eq .url $url }}
+        {{ $exists = true }}
+      {{ end }}
+    {{ end }}
+
+    <!-- Falls nicht vorhanden, zur Liste hinzufügen -->
+    {{ if not $exists }}
+      {{ $entry := dict "url" .Permalink "changefreq" "weekly" "priority" "0.5" }}
+      {{ $missing = $missing | append $entry }}
+    {{ end }}
+  {{ end }}
+
+  <!-- JSON-Datei tatsächlich speichern -->
+  {{ $outputPath := "data/sitemap-missing.json" }}
+  {{ os.WriteFile $outputPath (transform.Marshal (dict "sitemap_missing" $missing) "json") }}
+
+  <p>✅ <strong>Sitemap-Vorschläge wurden generiert und gespeichert.</strong></p>
+  <p><a href="/data/sitemap-missing.json" download>📥 Fehlende Sitemap-URLs als JSON herunterladen</a></p>
+{{ end }}

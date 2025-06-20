@@ -1,0 +1,15 @@
+<div class="breadcrumbs">
+    <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a> &raquo;
+    {{ if eq .Kind "section" }}
+      <span>{{ .Title }}</span>
+    {{ else if eq .Kind "taxonomyTerm" }}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ else if eq .Kind "taxonomy" }}
+      <a href="{{ .Parent.Permalink }}">{{ .Parent.Title }}</a> &raquo;
+      <span>{{ .Title }}</span>
+    {{ else }}
+      <a href="{{ .Section.Permalink }}">{{ .Section.Title }}</a> &raquo;
+      <span>{{ .Title }}</span>
+    {{ end }}
+  </div>
+  

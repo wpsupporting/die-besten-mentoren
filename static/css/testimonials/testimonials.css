@@ -1,0 +1,170 @@
+/* Testimonials Bereich */
+.testimonials-carousel {
+  padding: 10px 0;
+  background-image: linear-gradient(90deg, #1d2e64 0%, #ffa751 100%) !important;
+  text-align: center;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  visibility: hidden; /* Initial ausblenden */
+  opacity: 0; /* Unsichtbar machen */
+  transition: visibility 0s, opacity 0.3s ease-in; /* Weiches Einblenden */
+}
+
+/* Sobald JavaScript fertig ist */
+.testimonials-carousel.loaded {
+  visibility: visible;
+  opacity: 1; /* Sichtbar machen */
+}
+
+
+/* Überschriften */
+.testimonials-header h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.testimonials-header p {
+  font-size: 1.2rem;
+  color: #777;
+  margin-bottom: 30px;
+}
+
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Horizontal zentrieren */
+  justify-content: flex-start; /* Inhalt oben beginnen lassen */
+  text-align: center;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Boxen nutzen die volle Breite */
+  max-width: 90%;
+  margin: 0 auto;
+  overflow: visible; /* Inhalt sichtbar halten */
+  box-sizing: border-box; /* Padding und Border in die Höhe einbeziehen */
+  transition: height 0.3s ease; /* Sanfter Übergang bei Höhenänderungen */
+}
+
+/* Textstil für längere Inhalte */
+.testimonial-text {
+  font-size: 1.4rem;
+  color: #555;
+  line-height: 1.6;
+  max-height: 4.8em; /* Begrenzung auf 3 Zeilen (3 × line-height) */
+  overflow: hidden; /* Überschüssigen Text verstecken */
+  text-overflow: ellipsis; /* ... bei abgeschnittenem Text */
+  display: -webkit-box; /* Flexibles Boxmodell */
+  -webkit-line-clamp: 3; /* Maximal 3 Zeilen */
+  -webkit-box-orient: vertical; /* Vertikale Ausrichtung */
+}
+
+
+.testimonial-content {
+  margin-bottom: 20px;
+}
+
+.testimonial-icon {
+  font-size: 25px;
+  color: #A3075C;
+  margin-bottom: 15px;
+}
+
+
+.testimonial-avatar {
+  width: 80px; /* Bildbreite */
+  height: 80px; /* Bildhöhe */
+  border-radius: 50%; /* Rundes Bild */
+  object-fit: cover; /* Bildfüllung */
+  margin: 0 auto; /* Horizontal zentrieren */
+  display: block; /* Blockelement für saubere Zentrierung */
+  position: relative; /* Für vertikale Zentrierung in flexbox */
+  top: 0; /* Startposition */
+}
+
+
+.testimonial-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.testimonial-position {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+/* Navigation-Pfeile */
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+
+.slick-prev:hover,
+.slick-next:hover {
+  background: #ff6f61;
+}
+
+.slick-prev {
+  left: 10px;
+
+}
+
+.slick-next {
+  right: 30px;
+  
+}
+
+/* Pagination Dots */
+.slick-dots {
+  margin-top: 20px;
+}
+
+.slick-dots li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.slick-dots li button {
+  width: 12px;
+  height: 12px;
+  background: #ccc;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slick-dots li.slick-active button {
+  background: #ff6f61;
+}
+
+/* Zusätzliche Anpassungen für Smartphone-Querformat */
+@media (max-width: 576px) {
+  .slick-prev {
+    left: 40px; /* Größerer Abstand im Querformat */
+   
+
+  .slick-next {
+    right: 40px; /* Größerer Abstand im Querformat */
+    
+  }
+}
+

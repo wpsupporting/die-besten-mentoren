@@ -1,0 +1,109 @@
+/* Breadcrumb-Container */
+#heading-breadcrumbs {
+  width: 99%;
+  height: 100px;
+  background-image: linear-gradient(90deg, #1d2e64 0%, #e5007d 100%) !important;
+  border-radius: 5px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto;
+}
+
+#heading-breadcrumbs .breadcrumb > .active {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.breadcrumb>li+li:before{
+  display:none
+
+}
+
+
+/* Breadcrumb-Überschrift */
+#heading-breadcrumbs h1 {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* Breadcrumb-Links */
+#heading-breadcrumbs ul.breadcrumb {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: white;
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+/* Breadcrumb-Links Standard */
+#heading-breadcrumbs ul.breadcrumb li a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Hover-Effekt für Links */
+#heading-breadcrumbs ul.breadcrumb li a:hover {
+  color: #ffcc00;
+  text-decoration: underline;
+}
+
+/* Pfeil als Trenner */
+#heading-breadcrumbs ul.breadcrumb li + li:before {
+  content: ">";
+  color: white;
+  margin: 0 5px;
+}
+
+/* Letztes Breadcrumb-Element ausgegraut */
+#heading-breadcrumbs ul.breadcrumb > li:last-child {
+  color: #dedede;
+}
+
+/* Original Bootstrap-Styles überschreiben */
+.breadcrumb {
+  font-family: 'Quicksand Bold', 'Arial Narrow', Arial, sans-serif;
+  text-transform: uppercase;
+  background-color: transparent;
+  letter-spacing: 0.08em;
+  padding: 20px 0;
+  margin-bottom: 0;
+}
+
+/* 🔹 Mobile Ansicht optimieren */
+@media (max-width: 991px) {
+  #heading-breadcrumbs {
+      width: 100%;
+      height: 80px; /* Kleinere Höhe für Mobilgeräte */
+      padding: 10px;
+      color: #ffffff;
+  }
+
+  #heading-breadcrumbs h1 {
+      font-size: 20px;
+  }
+
+  #heading-breadcrumbs ul.breadcrumb {
+      font-size: 12px;
+  }
+
+  #heading-breadcrumbs ul.breadcrumb li a {
+      color: #ffffff !important; /* Stellt sicher, dass die Links weiß bleiben */
+  }
+
+  #heading-breadcrumbs ul.breadcrumb li a:hover {
+      color: #ffcc00 !important; /* Hover-Farbe beibehalten */
+  }
+
+  .breadcrumb {
+      padding: 15px 0;
+  }
+}

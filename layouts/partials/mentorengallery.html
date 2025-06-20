@@ -1,0 +1,92 @@
+{{ $kurse := where .Site.RegularPages "Type" "kurse" }}
+{{ if and .Site.Params.mentorengallery.enable (gt (len $kurse) 0) }}
+<section class="mentor-gallery">
+  <!-- Titel der Mentorengalerie -->
+  {{ if .Site.Params.mentorengallery.title }}
+  <div class="mentor-gallery-title">
+    <h2>{{ .Site.Params.mentorengallery.title | default "Mentorengalerie" }}</h2>
+  </div>
+  {{ end }}
+
+  <!-- Stylesheets -->
+   <!-- Stylesheets -->
+   <link rel="stylesheet" href="{{ "css/slick/slick.css" | relURL }}">
+   <link rel="stylesheet" href="{{ "css/slick/slick-theme.css" | relURL }}">
+
+  <link rel="stylesheet" href="{{ "css/mentorengallery/mentorengallery.css" | relURL }}">
+  <script src="{{ "js/mentorengallery/mentorengallery.js" | relURL }}" defer></script>
+
+  <!-- Slider -->
+  <div id="mentor-slider" class="slick-slider"
+    data-loop="{{ .Site.Params.mentorengallery.loop | default false }}"
+    data-autoplay="{{ .Site.Params.mentorengallery.auto_play | default false }}"
+    data-slide-speed="{{ .Site.Params.mentorengallery.slide_speed | default 7000 }}"
+    data-breakpoint-smartphone-portrait="{{ .Site.Params.mentorengallery.breakpoint_smartphone_portrait | default 480 }}"
+    data-breakpoint-smartphone-landscape="{{ .Site.Params.mentorengallery.breakpoint_smartphone_landscape | default 576 }}"
+    data-breakpoint-tablet-portrait="{{ .Site.Params.mentorengallery.tablet_portrait_items | default 768 }}"
+    data-breakpoint-tablet-landscape="{{ .Site.Params.mentorengallery.tablet_landscape_items | default 1024 }}"
+    data-breakpoint-desktop="{{ .Site.Params.mentorengallery.desktop_items | default 1200 }}"
+    data-smartphone-portrait-items="{{ .Site.Params.mentorengallery.smartphone_portrait_items | default 1 }}"
+    data-smartphone-landscape-items="{{ .Site.Params.mentorengallery.smartphone_landscape_items | default 2 }}"
+    data-tablet-portrait-items="{{ .Site.Params.mentorengallery.tablet_portrait_items | default 1 }}"
+    data-tablet-landscape-items="{{ .Site.Params.mentorengallery.tablet_landscape_items | default 2 }}"
+    data-desktop-items="{{ .Site.Params.mentorengallery.desktop_items | default 3 }}">
+    
+    {{ range $kurse }}
+    {{ if .Params.mdnz_kurse_single_mentoren_home_gallery_ }}
+    <div class="gallery-item">
+      <a href="{{ .Params.mdnz_kurse_single_mentoren_home_gallery_link_ | default .RelPermalink }}">
+        <div class="image-wrapper">
+          <img src="{{ .Params.mdnz_kurse_single_mentoren_home_gallery_ | relURL }}" 
+               alt="Mentorengalerie" 
+               class="mentorengallery-image">
+        </div>
+      </a>
+      <div class="mentor-author">{{ .Params.author }}</div> <!-- Author-Feld -->
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+
+  <!-- Skript zur dynamischen Höhenanpassung -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.querySelector("#mentor-slider");
+
+        if (!slider) {
+            console.error("Mentorengalerie-Slider nicht gefunden.");
+            return;
+        }
+
+        // Funktion zur dynamischen Höhenanpassung
+        function adjustHeights() {
+            const items = slider.querySelectorAll(".gallery-item");
+            if (items.length) {
+                let maxHeight = 0;
+
+                // Reset Höhe und finde die maximale Höhe
+                items.forEach(item => {
+                    item.style.height = "auto"; // Reset Höhe, um den Inhalt zu messen
+                    const height = item.offsetHeight;
+                    if (height > maxHeight) maxHeight = height;
+                });
+
+                // Setze die maximale Höhe auf alle Items
+                items.forEach(item => {
+                    item.style.height = maxHeight + "px";
+                });
+            }
+        }
+
+        // Initiale Höhenanpassung
+        adjustHeights();
+
+        // Höhenanpassung bei Fenstergrößenänderungen
+        window.addEventListener("resize", adjustHeights);
+
+        // Debugging-Ausgabe (optional)
+        console.log("Höhenanpassung abgeschlossen und Mentorengalerie geladen.");
+    });
+  </script>
+</section>
+{{ end }}

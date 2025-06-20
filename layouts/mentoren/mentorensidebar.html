@@ -1,0 +1,29 @@
+<div class="sidebar">
+    <div class="panel panel-default sidebar-menu">
+        <div class="panel-heading">
+            <h3 class="panel-title">mentorenkategorien</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked">
+                <!-- Filter löschen -->
+                <li>
+                    <a href="{{ "mentoren/" | relLangURL }}">
+                        Filter löschen
+                    </a>
+                </li>
+                <!-- Kategorien anzeigen -->
+                {{ if gt (len .Site.Taxonomies.mentorenkategorien) 0 }}
+                    {{ range $name, $items := .Site.Taxonomies.mentorenkategorien }}
+                    <li>
+                        <a href="{{ "mentorenkategorien/" | relLangURL }}{{ $name | urlize | lower }}">
+                            {{ $name | title }} ({{ len $items }})
+                        </a>
+                    </li>
+                    {{ end }}
+                {{ else }}
+                    <li>Keine Kategorien verfügbar</li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+</div>

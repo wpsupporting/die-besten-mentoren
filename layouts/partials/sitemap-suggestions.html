@@ -1,0 +1,68 @@
+<!-- Automatische Sitemap-Vorschläge (Nur für Entwickler sichtbar) -->
+<div style="border: 2px dashed red; padding: 10px; margin: 20px 0; background: #fff3cd;">
+  <h3>🚀 Sitemap-Vorschläge (Nur für Entwickler)</h3>
+
+  <ul id="sitemap-suggestions-list">
+    {{ $missing := slice }}
+
+    {{ range .Site.RegularPages }}
+      {{ $url := .Permalink }}
+      {{ $exists := false }}
+
+      <!-- Prüfen, ob URL bereits in sitemap.yaml enthalten ist -->
+      {{ range .Site.Data.settings.sitemap.sitemap }}
+        {{ if eq .url $url }}
+          {{ $exists = true }}
+        {{ end }}
+      {{ end }}
+
+      <!-- Falls nicht vorhanden, als Vorschlag anzeigen -->
+      {{ if not $exists }}
+        {{ $missing = $missing | append .Permalink }}
+        <li>🔹 <strong>{{ .Title }}</strong> → <code>{{ .Permalink }}</code></li>
+      {{ end }}
+    {{ end }}
+  </ul>
+
+  <button id="copyButton" onclick="copySitemapSuggestions()" disabled>📋 In Zwischenablage kopieren</button>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let listItems = document.querySelectorAll("#sitemap-suggestions-list li");
+        let copyButton = document.getElementById("copyButton");
+
+        // Button aktivieren, falls es neue URLs gibt
+        if (listItems.length > 0) {
+            copyButton.disabled = false;
+        }
+
+        // Funktion zum Kopieren der URLs in die Zwischenablage
+        async function copySitemapSuggestions() {
+            let urls = Array.from(document.querySelectorAll("#sitemap-suggestions-list li code"))
+                            .map(el => el.textContent.trim())
+                            .filter(url => url.length > 0)
+                            .join("\n");
+
+            try {
+                await navigator.clipboard.writeText(urls);
+                alert("✅ Sitemap-URLs wurden in die Zwischenablage kopiert!");
+            } catch (err) {
+                alert("❌ Fehler beim Kopieren der URLs.");
+                console.error(err);
+            }
+        }
+
+        // Funktion an Button binden
+        window.copySitemapSuggestions = copySitemapSuggestions;
+    });
+  </script>
+
+  {{ if gt (len $missing) 0 }}
+    <!-- JSON-Datei mit fehlenden URLs generieren -->
+    {{ $outputPath := "data/sitemap-missing.json" }}
+    {{ os.WriteFile $outputPath (transform.Marshal (dict "sitemap_missing" $missing) "json") }}
+    <p><a href="/data/sitemap-missing.json" download>📥 Fehlende Sitemap-URLs als JSON herunterladen</a></p>
+  {{ end }}
+
+  <p><strong>👉 Diese URLs fehlen in <code>sitemap.yaml</code></strong></p>
+</div>

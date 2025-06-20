@@ -1,0 +1,100 @@
+<section class="testimonials testimonials-carousel">
+  <!-- Stylesheets für Testimonials -->
+  <link rel="stylesheet" href="{{ "css/slick/slick.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/slick/slick-theme.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/testimonials/testimonials.css" | relURL }}">
+  <!-- Einbindung von Slick JS -->
+  <script src="{{ "js/testimonials/testimonials.js" | relURL }}" defer></script>
+
+  <!-- Überschriften -->
+  <div class="testimonials-header">
+    <h2>{{ .Site.Params.testimonials.title | default "Was unsere Kunden sagen" }}</h2>
+    <p>{{ .Site.Params.testimonials.subtitle | default "Echte Erfahrungsberichte von unseren Kunden" }}</p>
+  </div>
+
+  <!-- Slider -->
+  <div id="testimonials-slider" class="slick-slider"
+     data-loop="{{ .Site.Params.carouseltestimonials.loop | default false }}"
+     data-autoplay="{{ .Site.Params.carouseltestimonials.auto_play | default false }}"
+     data-autoplay-speed="{{ .Site.Params.carouseltestimonials.slide_speed | default 7000 }}"
+     data-breakpoint-smartphone-portrait="{{ .Site.Params.carouseltestimonials.breakpoint_smartphone_portrait | default 480 }}"
+     data-breakpoint-smartphone-landscape="{{ .Site.Params.carouseltestimonials.breakpoint_smartphone_landscape | default 576 }}"
+     data-breakpoint-tablet-portrait="{{ .Site.Params.carouseltestimonials.breakpoint_tablet_portrait | default 768 }}"
+     data-breakpoint-tablet-landscape="{{ .Site.Params.carouseltestimonials.breakpoint_tablet_landscape | default 1024 }}"
+     data-breakpoint-desktop="{{ .Site.Params.carouseltestimonials.breakpoint_desktop | default 1200 }}"
+     data-smartphone-portrait-items="{{ .Site.Params.carouseltestimonials.smartphone_portrait_items | default 1 }}"
+     data-smartphone-landscape-items="{{ .Site.Params.carouseltestimonials.smartphone_landscape_items | default 1 }}"
+     data-tablet-portrait-items="{{ .Site.Params.carouseltestimonials.tablet_portrait_items | default 1 }}"
+     data-tablet-landscape-items="{{ .Site.Params.carouseltestimonials.tablet_landscape_items | default 1 }}"
+     data-desktop-items="{{ .Site.Params.carouseltestimonials.desktop_items | default 1 }}">
+    {{ $testimonials := readDir "data/testimonials" }}
+    {{ $fallback := readFile "data/testimonialsfallbackimage.yaml" | transform.Unmarshal }}
+    {{ range $index, $entry := $testimonials }}
+      {{ $testimonial := readFile (printf "data/testimonials/%s" $entry.Name) | transform.Unmarshal }}
+      {{ if $testimonial }}
+        <div class="testimonial content-item">
+          <div class="testimonial-content">
+            <div class="testimonial-icon">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <p class="testimonial-text">"{{ $testimonial.text }}"</p>
+            <img src="{{ with $testimonial.avatar }}{{ . | absURL }}{{ else }}{{ $fallback.fallback_image | absURL }}{{ end }}" 
+                 alt="{{ $testimonial.name }}" class="testimonial-avatar">
+            <h5 class="testimonial-name">{{ $testimonial.name }}</h5>
+            <p class="testimonial-position">{{ $testimonial.position }}</p>
+          </div>
+        </div>
+      {{ else }}
+        <div class="testimonial content-item">
+          <div class="testimonial-content">
+            <p class="text-danger">Fehlerhafte Daten in "{{ $entry.Name }}"</p>
+          </div>
+        </div>
+      {{ end }}
+    {{ end }}
+  </div>
+</section>
+
+<!-- Skript zur dynamischen Höhenanpassung -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const slider = document.querySelector("#testimonials-slider");
+
+      if (!slider) {
+          console.error("Slider nicht gefunden.");
+          return;
+      }
+
+      // Funktion zur dynamischen Höhenanpassung
+      function adjustHeights() {
+          const items = slider.querySelectorAll(".content-item");
+          if (items.length) {
+              let maxHeight = 0;
+
+              // Reset Höhe und finde die maximale Höhe
+              items.forEach(item => {
+                  item.style.height = "auto"; // Reset Höhe, um den Inhalt zu messen
+                  const height = item.offsetHeight;
+                  if (height > maxHeight) maxHeight = height;
+              });
+
+              // Setze die maximale Höhe auf alle Items
+              items.forEach(item => {
+                  item.style.height = maxHeight + "px";
+              });
+          }
+      }
+
+      // Initiale Höhenanpassung
+      adjustHeights();
+
+      // Höhenanpassung bei Fenstergrößenänderungen
+      window.addEventListener("resize", adjustHeights);
+
+      // Slider als geladen markieren
+      slider.closest(".testimonials-carousel").classList.add("loaded");
+
+      // Debugging-Ausgabe (optional)
+      console.log("Höhenanpassung abgeschlossen und Slider geladen.");
+  });
+</script>

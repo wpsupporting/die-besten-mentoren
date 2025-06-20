@@ -1,0 +1,287 @@
+baseURL = "https://die-besten-mentoren.de/"
+publishDir = "public-die-besten-mentoren"     # Produktive Ausgabe in "lebenausdemsein"
+contentDir = "content"     # Standard-Inhaltsverzeichnis
+staticDir = "static"       # Standard-Statische Dateien
+layoutDir = "layouts"      # Standard-Layouts
+relativeURLs = true
+title = "Die-besten-Mentoren.de - Online-Seminare für deine  persönliche und berufliche Weiterentwicklung"
+theme = "universal"
+themesDir = "themes"
+languageCode = "de-de"
+defaultContentLanguage = "de"
+enableRobotsTXT = true
+
+# number of words of summarized post content (default 70)
+summaryLength = 70
+
+# Define the number of posts per page
+pagination.pagerSize = 20
+
+# not pluralize title pages by default
+pluralizelisttitles = false
+
+
+disableKinds = []
+[services]
+[services.disqus]
+# Enable comments by entering your Disqus shortname
+#Shortname = "devcows"
+[services.googleAnalytics]
+# Enable Google Analytics by entering your tracking code
+#id = ""
+
+
+[params]
+sitemapFile = "sitemap.xml"
+footerhinweis_enabled = true
+footerhinweis_title = "Hinweis"
+
+#MentorenParamenter 
+showArticleNumber =false    
+showSpecialOffers = false      
+showButtons = false          
+
+logo_data = "logo"
+
+
+#viewMorePostLink = "/blog/"
+author = "Die besten Mentoren"
+defaultKeywords = ["Neue Zeit","Mentoren","Meditation", "Achtsamkeit", "Spiritualität", "Selbstfindung", "Erwachen", "Innere Ruhe", "Bewusstsein", "Persönlichkeitsentwicklung", "Freiheit", "Lebensweisheiten"]
+mainSections = ["kurse", "mentoren"]
+defaultDescription = "Die-besten-Mentoren.de - Online-Kurse und Seminare für deine  persönliche und berufliche Weiterentwicklung"
+
+    # Social media
+    facebook_site = "" # the Facebook handle of your site ('https://www.facebook.com/HANDLE')
+    twitter_site = "GoHugoIO" # the Twitter handle of your site (without the '@')
+    default_sharing_image = "img/sharing-default.png"
+
+    # Google Maps widget: If `googleMapsApiKey` is not set, no key will be passed to Google (which likely results in a broken map widget).
+    #enableGoogleMaps = false
+    #googleMapsApiKey = "AIzaSyAv7Sza8NSp9_l_g8G2vlo0H4ydEPn_2jY"
+
+    #latitude = "-12.043333"
+    #longitude = "-77.028333"
+
+    # Style options: default (light-blue), blue, green, marsala, pink, red, turquoise, violet
+    style = "default"
+
+    # Since this template is static, the contact form uses www.formspree.io as a
+    # proxy. The form makes a POST request to their servers to send the actual
+    # email. Visitors can send up to a 50 emails each month for free.
+    #
+    # What you need to do for the setup?
+    #
+    # - register your account to https://formspree.io/register
+    # - login and create new form
+    # - set your form's endpoint url under 'formspree_action' below
+    # - upload the generated site to your server
+    # - test a dummy email yourself
+    # - you're done. Happy mailing!
+    #
+    # Enable the contact form by entering your Formspree.io endpoint url
+    #formspree_action = "https://formspree.io/sample/of/endpoint"
+    #contact_form_ajax = false
+
+    # Formspree form supports Google reCAPTCHA Key (type v2).
+    # If you use this feature, you should enable reCAPTCHA feature in the Formspree dashboard.
+    #
+    # By default, Formspree use a redirect page for recaptcha widget.
+    # If you use a recaptcha widget in your contact page, you should do next steps.
+    # (if you don't want, skip these steps)
+    #
+    #   1. register your site on Google recaptcha admin page: https://www.google.com/recaptcha/admin
+    #   2. select reCAPTCHA v2 and checkbox widget type.
+    #   3. remember site key and secret key.
+    #   4. enter secret key into "Custom reCAPTCHA Key" field in your Formspree form setting page.
+    #   5. change `enableRecaptchaInContactForm` is to true
+    #   6. enter site key into `googleRecaptchaKey` to enable a recaptcha widget in your page.
+    #
+    #enableRecaptchaInContactForm = false
+    #googleRecaptchaKey = "site_key_for_google_recaptcha"
+
+    #about_us = "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>"
+    
+
+    # Format dates with Go's time formatting
+    date_format = "January 2, 2006"
+
+    dropdown_mouse_over = false
+
+    
+# contact
+enableTop = false
+enableNav = false
+enableBreadcrumbs = false
+enableMap = false
+
+[permalinks]
+    mentoren = "/mentoren/:slug/"
+    kurse = "/kurse/:slug/"
+    produkte = "/produkte/:slug/"
+    autoren = "/autoren/:slug/"
+    blog = "/blog/:slug/"
+
+# Enable or disable top bar with social icons
+[params.topbar]
+    enable = false
+    text = """<p class="hidden-sm hidden-xs">Contact us on +420 777 555 333 or hello@universal.com.</p>
+      <p class="hidden-md hidden-lg"><a href="tel:+420 777 555 333" data-animate-hover="pulse"><i class="fas fa-phone"></i></a>
+      <a href="mailto:hello@universal.com" data-animate-hover="pulse"><i class="fas fa-envelope"></i></a>
+      </p>
+      """
+
+# Enable and disable widgets for the right sidebar
+
+[params.widgets]
+  produktekategorien = false
+  mentorenkategorien = true
+  autorenkategorien = false
+  kursekategorien = true
+  blogkategorien = false
+  categories = false
+  tags = false
+  search = false
+
+
+[taxonomies]
+ category = "categories"
+ kursekategorie = "kursekategorien"
+ produktekategorie = "produktekategorien"
+ mentorenkategorie = "mentorenkategorien"
+ autorenkategorie = "autorenkategorien"
+ blogkategorie = "blogkategorien"
+ tag = "tags"
+ author = "authors"
+
+
+ [params.offercarousel]
+    items = 3
+    auto_play = false
+    slide_speed = 7000
+    pagination_speed = 1500
+    loop = false
+    responsive_small = 1
+    responsive_medium = 2
+    responsive_large = 3
+
+    # Breakpoints
+    breakpoint_small = 480
+    breakpoint_medium = 768
+    breakpoint_large = 1024
+
+
+[params.carouselCustomers]
+    items = 6
+    auto_play = false
+    slide_speed = 2000
+    pagination_speed = 1000
+
+[params.carouseltestimonials]
+  loop = false           
+  auto_play = false    
+  slide_speed = 7000     
+  breakpoint_smartphone_portrait = 480
+  breakpoint_smartphone_landscape = 576
+  breakpoint_tablet_portrait = 768
+  breakpoint_tablet_landscape = 1024
+  breakpoint_desktop = 1200
+  smartphone_portrait_items = 1
+  smartphone_landscape_items = 2
+  tablet_portrait_items =1
+  tablet_landscape_items = 2
+  desktop_items = 3
+
+
+[params.carouselHomepage]
+    # All carousel items are defined in their own files. You can find example items
+    # at 'exampleSite/data/carousel'.
+    # For more information take a look at the README.
+    enable = true
+    auto_play = true
+    slide_speed = 2000
+    pagination_speed = 1000
+
+[params.features]
+    enable = true
+    cols = 3 # Default: 3, Available values 2,3,4,6
+    # All features are defined in their own files. You can find example items
+    # at 'exampleSite/data/features'.
+    # For more information take a look at the README.
+
+[params.testimonials]
+    enable = true
+  # Alle testimonials sind in eigenen Dateien definiert. Beispielitems findest du
+  # unter 'exampleSite/data/testimonials'.
+  # Für weitere Informationen wirf einen Blick in die README.
+  title = "Erfahrungsberichte"
+  subtitle = "Feedback unserer Kunden."
+
+[params.mentorengallery]
+  title = "Die Mentoren"
+  enable = true
+  loop = false           
+  auto_play = false    
+  slide_speed = 7000     
+  breakpoint_smartphone_portrait = 480
+  breakpoint_smartphone_landscape = 576
+  breakpoint_tablet_portrait = 768
+  breakpoint_tablet_landscape = 1024
+  breakpoint_desktop = 1200
+  smartphone_portrait_items = 1
+  smartphone_landscape_items = 3
+  tablet_portrait_items = 3
+  tablet_landscape_items = 5
+  desktop_items = 6
+
+
+
+[params.see_more]
+    enable = false
+    icon = "far fa-file-alt"
+    title = "Die Online Masterclass Seminare der besten Mentoren unserer Zeit"
+    subtitle = "Für deine  persönliche und berufliche Weiterentwicklung"
+    link_url = "http://localhost:1313/kurse"
+    link_text = "Zu den Kursen"
+
+[params.clients]
+    enable = false
+    # All clients are defined in their own files. You can find example items
+    # at 'exampleSite/data/clients'.
+    # For more information take a look at the README.
+    title = "Our Clients"
+    subtitle = ""
+
+[params.recent_posts]
+    enable = false
+    title = "From our blog"
+    subtitle = "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo."
+    hide_summary = false
+
+[params.footer.recent_posts]
+    enable = false
+
+# Footer-Einstellungen
+[params.footer]
+  enable = true# 
+  homepage_enable = false
+  recent_posts_enable = false 
+
+# Copyright-Einstellungen
+[params.copyright]
+  enable = true
+  text = "Copyright (c) 2024, Die besten Mentoren; alle Rechte vorbehalten."
+
+
+[outputs]
+home = ["HTML", "RSS", "robots" , "sitemap"]
+
+[outputFormats]
+[outputFormats.sitemap]
+  mediaType = "application/xml"
+  baseName = "sitemap"
+  isPlainText = true
+  permalinkable = false
+
+[sitemap]
+  filename = "sitemap.xml"
+

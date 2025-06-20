@@ -1,0 +1,53 @@
+<header class="site-header">
+    <!-- Logo-Bereich -->
+    <div class="logo-container">
+      {{ $logo := site.GetPage "logo" }}
+      {{ if not $logo.Params.disabled_logo }}
+      <a href="/" class="logo-link">
+        <img src="{{ $logo.Params.logo }}" alt="Logo" class="logo-image">
+      </a>
+      {{ end }}
+  
+      <!-- Logo-Text -->
+      <div class="logo-text">
+        <h1>{{ $logo.Params.logo_text }}</h1>
+      </div>
+  
+      <!-- Logo-Untertext -->
+      <div class="logo-subtext">
+        <p>{{ $logo.Params.logo_untertext }}</p>
+      </div>
+    </div>
+  
+    <!-- Navigation -->
+    <nav class="main-navigation">
+      <div class="menu-container">
+        <ul class="menu">
+          {{ $current := . }}
+          {{ range .Site.Menus.main.ByWeight }}
+          {{ $active := "" }}
+          {{ if eq $current.RelPermalink .URL }}
+            {{ $active = "active" }}
+          {{ end }}
+          {{ if .HasChildren }}
+          <li class="menu-item has-children {{ $active }}">
+            <a href="#" class="menu-link">{{ .Name }}</a>
+            <ul class="submenu">
+              {{ range .Children.ByWeight }}
+              <li class="submenu-item">
+                <a href="{{ .URL }}" class="submenu-link">{{ .Name }}</a>
+              </li>
+              {{ end }}
+            </ul>
+          </li>
+          {{ else }}
+          <li class="menu-item {{ $active }}">
+            <a href="{{ .URL }}" class="menu-link">{{ .Name }}</a>
+          </li>
+          {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+    </nav>
+  </header>
+  

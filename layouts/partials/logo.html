@@ -1,0 +1,21 @@
+{{- $logoData := index site.Data.settings "logo" "logo" -}}
+
+{{- if $logoData.enabled -}}
+  <div class="logo-wrapper">
+    <a class="logo-container" href="{{ "/" | relLangURL }}">
+      
+      {{- if and $logoData.show_image (ne $logoData.image "") -}}
+        <img src="{{ $logoData.image | relURL }}" alt="Logo" class="logo-image" />
+      {{- end -}}
+
+      {{- if $logoData.show_text -}}
+        <h1 class="logo-text">{{ $logoData.text | safeHTML }}</h1>
+      {{- end -}}
+
+      {{- if and $logoData.show_subtext (ne $logoData.subtext "") -}}
+        <p class="logo-subtext">{{ $logoData.subtext }}</p>
+      {{- end -}}
+
+    </a>
+  </div>
+{{- end -}}

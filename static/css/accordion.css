@@ -1,0 +1,168 @@
+/* Akkordeon-Container */
+#content-section {
+    background-color: #ffcde4;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* Flex-Container für Bild und Text */
+  .content-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+  }
+  
+  /* Bild-Container */
+  .content-image-container {
+    flex: 1 1 40%;
+    max-width: 400px;
+  }
+  
+  .content-image-container img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  
+  /* Text-Container */
+  .content-text-container {
+    flex: 1 1 50%;
+    text-align: left;
+  }
+  
+  .content-text-container h2 {
+    font-size: 2em;
+    color: var(--primary-text);
+    margin-bottom: 10px;
+  }
+  
+  .content-text-container p {
+    font-size: 1.2em;
+    color: var(--primary-text);
+  }
+  
+  /* Akkordeon für content */
+  .accordion-content {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Akkordeon-Titel (Buttons) */
+  .accordion-content-btn {
+    color: #FFF;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s, transform 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .content-bg-one {
+    background-color: #9b59b6;
+  }
+  
+  .content-bg-two {
+    background-color: #FE6860;
+  }
+  
+  .content-bg-three {
+    background-color: #23B684;
+  }
+  
+  .content-bg-four {
+    background-color: #603838;
+  }
+  
+  .content-bg-five {
+    background-color: #F9BF3B;
+  }
+  
+  .content-bg-six {
+    background-color: #C25396;
+  }
+  
+  .accordion-content-btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  .accordion-content-btn .accordion-icon {
+    font-size: 1.2em;
+    margin-left: 10px;
+  }
+  
+  /* Akkordeon-Inhalt */
+  .accordion-content-content {
+    display: none;
+    background-color: #3d4a60;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    font-size: 14px;
+    color: #e4e4e4;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .accordion-content-content p {
+    margin: 0;
+  }
+  
+  .accordion-content-btn.content-bg-one.active {
+    background-color: #9b59b6;
+  }
+  
+  .accordion-content-btn.content-bg-two.active {
+    background-color: #FE6860;
+  }
+  
+  .accordion-content-btn.content-bg-three.active {
+    background-color: #23B684;
+  }
+  
+  .accordion-content-btn.content-bg-four.active {
+    background-color: #603838;
+  }
+  
+  .accordion-content-btn.content-bg-five.active {
+    background-color: #F9BF3B;
+  }
+  
+  .accordion-content-btn.content-bg-six.active {
+    background-color: #C25396;
+  }
+  
+  .accordion-content-content span.square {
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: -17px;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+  }
+  
+  @media (max-width: 768px) {
+    .content-flex-container {
+      flex-direction: column;
+    }
+  
+    .content-image-container,
+    .content-text-container {
+      flex: 1 1 100%;
+    }
+  }
+  

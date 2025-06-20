@@ -1,0 +1,82 @@
+/* Testimonials Gesamtbereich */
+.testimonials-carousel {
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f9f9f9, #ececec); /* Dezenter Farbverlauf */
+  border-radius: 10px;
+  margin-top: 40px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sanfter Schatten */
+}
+
+/* Swiper-Slider */
+.swiper-container {
+  width: 100%;
+  padding: 20px;
+}
+
+/* Einzelnes Testimonial */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.testimonial {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Inhalte gleichmäßig verteilen */
+  align-items: center;
+  text-align: center;
+  max-width: 90%; /* Beschränkt die Breite der Testimonials */
+  max-height: 400px; /* Maximalhöhe einstellen */
+  overflow: hidden; /* Verhindert, dass Inhalte hinausfließen */
+  margin: 0 auto;
+}
+
+/* Zitat-Icon */
+.testimonial-icon {
+  font-size: 40px;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+/* Text */
+.testimonial-text {
+  font-size: 1rem;
+  color: #555;
+  margin: 10px 0;
+  font-style: italic;
+  line-height: 1.6;
+  max-height: 100px; /* Texthöhe begrenzen */
+  overflow: hidden; /* Überfließenden Text abschneiden */
+  text-overflow: ellipsis; /* Zeigt ... an, wenn der Text abgeschnitten wird */
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Maximal 4 Zeilen Text */
+  -webkit-box-orient: vertical;
+}
+
+/* Avatar */
+.testimonial-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+}
+
+/* Name */
+.testimonial-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  margin: 5px 0;
+}
+
+/* Position / Rolle */
+.

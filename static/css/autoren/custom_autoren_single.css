@@ -1,0 +1,246 @@
+.single-left-column, .single-right-column {
+  margin-bottom: 30px;
+}
+
+/* Titel in der Single-Ansicht */
+.single-autoren-title {
+  background-color: #1E2460; /* Hintergrundfarbe */
+  color: #ffffff; /* Textfarbe */
+  padding: 10px; /* Innenabstand */
+  border-radius: 4px; /* Optional: Abgerundete Ecken */
+  text-align: left; /* Links ausgerichtet */
+  margin-bottom: 20px; /* Abstand nach unten */
+}
+
+h2.single-autoren-title {
+  background-color: #1E2460;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+
+
+.single-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.single-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+.single-image img:hover {
+  transform: scale(1.05);
+}
+
+.single-meta-daten {
+  /* Platz für Meta-Daten */
+}
+
+/* Sonderangebot */
+.single-special-offer-outer {
+  height: auto; /* Dynamische Höhe basierend auf Inhalt */
+  margin-top: 20px; /* Abstand zur Beschreibung */
+  text-align: right; /* Rechtsbündige Ausrichtung */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.single-special-offer-inner {
+  display: inline-block;
+  max-width: 100%;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.single-special-offer {
+  font-size: 1em;
+  color: #e63946; /* Farblich hervorheben */
+  margin: 0;
+  font-weight: bold;
+}
+.single-special-offer-inner
+.single-no-offer {
+  font-size: 1em;
+  margin: 0;
+  color: transparent;
+  line-height: 1;
+}
+
+/* Preise */
+.single-price-buttons-container {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.single-price-container {
+  display: flex;
+  justify-content: flex-end; /* Rechtsbündig */
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.single-price, .single-old-price, .single-special-price {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.single-old-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 10px;
+}
+.single-special-price {
+  color: #e63946;
+}
+
+/* Buttons */
+.single-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end; /* Rechtsbündig */
+  gap: 10px;
+}
+.single-buttons.single {
+  justify-content: flex-end;
+}
+
+.single-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.5;
+  min-width: 130px;
+}
+.single-btn:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  opacity: 0.9;
+}
+.single-buttons.single .single-btn {
+  min-width: 200px;
+}
+
+.single-btn-landingpage {
+  background-color: #007bff;
+}
+.single-btn-discount {
+  background-color: #28a745;
+}
+.single-btn-buy-now {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.single-button-icon {
+  margin-right: 5px;
+  font-size: 1.2rem;
+}
+.single-button-text {
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Hinweis */
+.single-hinweis {
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: #777;
+  text-align: right; /* Rechtsbündig */
+}
+
+/* Titel der Beschreibung */
+.single-description-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: right; /* Rechtsbündig */
+}
+
+/* Lange Beschreibung */
+.single-long-description {
+  margin-top: 70px;
+  line-height: 1.6;
+  color: #333;
+  text-align: justify;
+}
+
+.single-artikelnr {
+  margin-top: 15px;
+  font-size: 0.9em;
+  color: #555;
+  text-align: left;
+}
+
+.back-button {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start; /* Links ausgerichtet */
+}
+
+.back-button .btn-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  background-color: #1E2460; /* Gleiche Farbe wie Titel */
+  border-radius: 5px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  line-height: 1.5;
+}
+
+.back-button .btn-back:hover {
+  background-color: #141a3a; /* Etwas dunkler bei Hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-button .btn-back i {
+  margin-right: 5px; /* Abstand zwischen Icon und Text */
+}
+
+
+/* Optionale Anpassungen für kleinere Bildschirme */
+@media (max-width: 767px) {
+  .single-autoren-title {
+    font-size: 1.5em;
+  }
+  .single-price-container {
+    margin-bottom: 15px;
+    justify-content: center; /* Zentriert bei kleineren Bildschirmen */
+  }
+  .single-buttons {
+    justify-content: center; /* Zentriert bei kleineren Bildschirmen */
+  }
+  .single-buttons.single .single-btn {
+    min-width: 100%;
+  }
+
+
+  
+}

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    {{ partial "headers.html" . }}
+    <link rel="stylesheet" href="{{ "css/mentorengallery/mentorengallery.css" | relURL }}">
+</head>
+<body>
+    <div id="single-content">
+        {{ partial "top.html" . }}
+        {{ partial "logo.html" . }}
+        {{ partial "menu.html" . }}
+
+        <!-- Breadcrumbs 
+        <div id="heading-breadcrumbs">
+            {{ partial "breadcrumbs.html" . }}
+        </div>-->
+
+        <!-- Root-Container -->
+        <div class="container wider-container">
+            <!-- Zurück-Link -->
+            <a href="{{ .Site.BaseURL }}mentoren/" class="back-link">← Zurück zu allen Kursangeboten</a>
+
+            <h2 class="single-content-title">
+                {{ .Params.mdnz_mentoren_archiv_title_ | default .Params.mdnz_mentoren_single_title_ | default .Title }}
+            </h2>
+
+            <div class="row">
+                <!-- Hauptinhalt mit Rahmen -->
+                <div class="col-lg-9 col-md-12 main-content-with-border">
+                    <div class="row">
+                        <!-- Linke Spalte: Bild (30%) -->
+                        <div class="col-lg-4 col-md-5 single-left-column">
+                            <div class="single-image">
+                                <a href="{{ .Permalink }}">
+                                    {{ if .Params.mdnz_mentoren_archiv_image_ }}
+                                        <img src="{{ .Params.mdnz_mentoren_archiv_image_ | relURL }}" alt="{{ .Params.mdnz_mentoren_archiv_title_ }}">
+                                    {{ else if .Params.mdnz_mentoren_single_image_ }}
+                                        <img src="{{ .Params.mdnz_mentoren_single_image_ | relURL }}" alt="{{ .Params.mdnz_mentoren_archiv_title_ }}">
+                                    {{ else if .Site.Data.contentfallbackimage.fallback_image }}
+                                        <img src="{{ .Site.Data.contentfallbackimage.fallback_image | relURL }}" alt="Standardbild">
+                                    {{ else }}
+                                        <span class="no-image">Kein Bild verfügbar</span>
+                                    {{ end }}
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Rechte Spalte: Text (70%) -->
+                        <div class="col-lg-8 col-md-7 single-right-column">
+                            <!-- Titel -->
+                            {{ if .Params.mdnz_mentoren_single_short_title_right }}
+                            <h3 class="single-short-title-right">
+                                {{ .Params.mdnz_mentoren_single_short_title_right }}
+                            </h3>
+                            {{ end }}
+
+                            <!-- Beschreibung -->
+                            {{ if .Params.mdnz_mentoren_single_shortdescription_right }}
+                            <div class="single-short-description">
+                                {{ .Params.mdnz_mentoren_single_shortdescription_right | markdownify }}
+                            </div>
+                            {{ end }}
+
+                            <!-- Artikelnummer -->
+                            {{ if and .Site.Params.showArticleNumber .Params.mdnz_mentoren_artikelnr }}
+                            <div class="single-artikelnr">
+                                <strong>Artikel-Nr:</strong> {{ .Params.mdnz_mentoren_artikelnr }}
+                            </div>
+                            {{ end }}
+
+                            <!-- Sonderangebot -->
+                            {{ if and .Site.Params.showSpecialOffers .Params.mdnz_mentoren_single_special_offer_price_ }}
+                            <div class="single-special-offer-outer">
+                                <div class="single-special-offer-inner">
+                                    <p class="single-special-offer">
+                                        {{ .Params.mdnz_mentoren_single_special_offer_description_ | default "Sonderaktion: nur für kurze Zeit!" }}
+                                    </p>
+                                </div>
+                            </div>
+                            {{ end }}
+
+                            <!-- Preise -->
+                            {{ if .Site.Params.showPrices }}
+                            <div class="single-price-container {{ if .Params.mdnz_mentoren_single_special_offer_price_ }}single-special-offer-active{{ end }}">
+                                {{ if and .Params.mdnz_mentoren_single_price_ (not .Params.mdnz_mentoren_single_special_offer_price_) }}
+                                    <span class="single-price">{{ .Params.mdnz_mentoren_single_price_ }}</span>
+                                {{ else if .Params.mdnz_mentoren_single_special_offer_price_ }}
+                                    <span class="single-old-price"><s>{{ .Params.mdnz_mentoren_single_price_ }}</s></span>
+                                    <span class="single-special-price">{{ .Params.mdnz_mentoren_single_special_offer_price_ }}</span>
+                                {{ end }}
+                            </div>
+                            {{ end }}
+
+                            <!-- Buttons -->
+                            {{ if .Site.Params.showButtons }}
+                            <div class="single-buttons">
+                                {{ $numButtons := 0 }}
+                                {{ if and .Params.mdnz_show_cta_mentoren_landingpage .Params.mdnz_affiliateLinkLandingpage }}
+                                  {{ $numButtons = add $numButtons 1 }}
+                                {{ end }}
+                                {{ if and (not .Params.mdnz_mentoren_single_special_offer_price_) .Params.mdnz_affiliateLink_ogskd }}
+                                  {{ $numButtons = add $numButtons 1 }}
+                                {{ end }}
+                                {{ if .Params.mdnz_mentoren_single_special_offer_price_ }}
+                                  {{ $numButtons = add $numButtons 1 }}
+                                {{ end }}
+
+                                <div class="single-buttons {{ if eq $numButtons 1 }}single{{ end }}">
+                                    <!-- Landingpage Button -->
+                                    {{ if and .Params.mdnz_show_cta_mentoren_landingpage .Params.mdnz_affiliateLinkLandingpage }}
+                                    <a href="{{ .Params.mdnz_prettyLinkLandingpage }}" 
+                                       data-redirect-url="{{ .Params.mdnz_affiliateLinkLandingpage }}" 
+                                       onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;" 
+                                       title="{{ .Params.mdnz_prettyLinkLandingpage }}" 
+                                       target="_blank" 
+                                       rel="nofollow noopener" 
+                                       class="single-btn single-btn-landingpage">
+                                        <span class="single-button-text">
+                                            {{ .Params.cta_text_landingpage | default "Mehr erfahren" }}
+                                        </span>
+                                    </a>
+                                    {{ end }}
+
+                                    <!-- Originalpreis Button -->
+                                    {{ if and (not .Params.mdnz_mentoren_single_special_offer_price_) .Params.mdnz_affiliateLink_ogskd }}
+                                    <a href="{{ .Params.mdnz_prettyLink_ogskd }}" 
+                                       data-redirect-url="{{ .Params.mdnz_affiliateLink_ogskd }}" 
+                                       onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;" 
+                                       title="{{ .Params.mdnz_prettyLink_ogskd }}" 
+                                       target="_blank" 
+                                       rel="nofollow noopener" 
+                                       class="single-btn single-btn-discount">
+                                        <span class="single-button-text">
+                                            {{ .Params.cta_text_ogskd | default "Jetzt ansehen" }}
+                                        </span>
+                                    </a>
+                                    {{ end }}
+
+                                    <!-- Rabatt bestellen Button -->
+                                    {{ if .Params.mdnz_mentoren_single_special_offer_price_ }}
+                                    <a href="{{ .Params.mdnz_prettyLink_mgskd }}" 
+                                       data-redirect-url="{{ .Params.mdnz_affiliateLink_mgskd }}" 
+                                       onclick="window.location.href=this.getAttribute('data-redirect-url'); return false;" 
+                                       title="{{ .Params.mdnz_prettyLink_mgskd }}" 
+                                       target="_blank" 
+                                       rel="nofollow noopener" 
+                                       class="single-btn single-btn-buy-now">
+                                        <span class="single-button-text">
+                                            {{ .Params.cta_text_mgskd | default "Sonderangebot sichern" }}
+                                        </span>
+                                    </a>
+                                    {{ end }}
+                                </div>
+                            </div>
+                            {{ end }}
+
+                            <!-- Hinweis -->
+                            {{ if and .Site.Params.showHinweis .Params.mdnz_mentoren_single_hinweis }}
+                            <div class="single-hinweis">
+                                {{ .Params.mdnz_mentoren_single_hinweis | markdownify }}
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+
+                    <!-- Beschreibung direkt unterhalb -->
+                    <div class="description-container">
+                        <div class="long-description-container">
+                            {{ if .Params.mdnz_mentoren_single_description_title }}
+                            <h3 class="long-description-title">
+                                {{ .Params.mdnz_mentoren_single_description_title }}
+                            </h3>
+                            {{ end }}
+
+                            {{ if .Params.mdnz_mentoren_single_description_ }}
+                            <div class="single-long-description">
+                                {{ .Params.mdnz_mentoren_single_description_ | markdownify }}
+                            </div>
+                            {{ end }}
+
+                            <!-- Vollständiger Markdown-Inhalt -->
+                            <div class="single-full-content">
+                                {{ with .Content }}
+                                    {{ . }}
+                                {{ else }}
+                                    <p></p>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </div>
+
+<!-- Kurse des Mentors -->
+<div id="mentor-courses" class="mentor-courses-section">
+    <h2>Kurse von {{ .Title }}</h2>
+    <div class="course-gallery">
+        {{ $mentorAuthor := .Params.author }} <!-- Autor des Mentors -->
+        {{ $kurse := where .Site.RegularPages "Type" "kurse" }} <!-- Alle Kurse holen -->
+        {{ $filteredKurse := where $kurse "Params.author" $mentorAuthor }} <!-- Filtere Kurse nach Autor -->
+
+        {{ if gt (len $filteredKurse) 0 }}
+            <div class="courses-container">
+                {{ range $filteredKurse }}
+                    <div class="course-item">
+                        <a href="{{ .RelPermalink }}">
+                            <div class="image-wrapper">
+                                <!-- Bild des Kurses -->
+                                {{ if .Params.mdnz_kurse_archiv_image_ }}
+                                    <img src="{{ .Params.mdnz_kurse_archiv_image_ | relURL }}" alt="{{ .Params.mdnz_kurse_archiv_title_ }}">
+                                {{ else if .Params.mdnz_kurse_single_image_ }}
+                                    <img src="{{ .Params.mdnz_kurse_single_image_ | relURL }}" alt="{{ .Params.mdnz_kurse_archiv_title_ }}">
+                                {{ else if .Site.Data.contentfallbackimage.fallback_image }}
+                                    <img src="{{ .Site.Data.contentfallbackimage.fallback_image | relURL }}" alt="Standardbild">
+                                {{ else }}
+                                    <span class="no-image">Kein Bild verfügbar</span>
+                                {{ end }}
+                            </div>
+                        </a>
+                        <h3 class="course-title">{{ .Title }}</h3>
+                    </div>
+                {{ end }}
+            </div>
+        {{ else }}
+        {{ end }}
+    </div>
+</div>
+
+
+
+
+
+
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-3 col-md-12">
+                    <div class="sidebar-container">
+                        {{ template "mentoren/mentorensidebar.html" . }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ partial "footer.html" . }}
+    </div>
+    {{ partial "scripts.html" . }}
+
+    <script>
+        // Dynamische Klassen für sichtbare Inhalte
+        document.addEventListener("DOMContentLoaded", function () {
+            const items = document.querySelectorAll(".single-content-mentoren-item");
+            items.forEach(item => {
+                if (!item.querySelector(".single-buttons")) {
+                    item.classList.add("no-buttons");
+                }
+                if (!item.querySelector(".single-special-offer-outer")) {
+                    item.classList.add("no-special-offers");
+                }
+                if (!item.querySelector(".single-artikelnr")) {
+                    item.classList.add("no-article-number");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

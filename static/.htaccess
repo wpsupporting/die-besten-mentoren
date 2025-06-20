@@ -1,0 +1,46 @@
+# Aktiviert Rewrite Engine
+RewriteEngine On
+
+# Blockiert aggressive Bots & Webarchive, aber nicht Google oder Bing
+RewriteCond %{HTTP_USER_AGENT} (ahrefs|semrush|mj12bot|archive.org_bot|ia_archiver) [NC]
+RewriteRule .* - [F,L]
+
+# Verhindert das Directory Listing (kein Zugriff auf Verzeichnislisten)
+Options -Indexes
+
+# Blockiert versteckte & sensible Dateien (z. B. .git, .env, .htaccess)
+<FilesMatch "^\.(git|env|htaccess|htpasswd|config)">
+    Require all denied
+</FilesMatch>
+
+# Sicherheit: HTTP-Header setzen
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Kein Archivieren durch Wayback Machine oder andere Webarchiv-Dienste
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "noarchive"
+</IfModule>
+
+# Blockiert russische, chinesische und internationale Bots (ohne doppelte Einträge)
+RewriteCond %{HTTP_USER_AGENT} (YandexBot|Baiduspider|Sogou|360Spider) [NC]
+RewriteRule .* - [F,L]
+
+# GeoIP Whitelisting - Nur DACH-Länder & Google erlauben
+GeoIPEnable On
+SetEnvIf GEOIP_COUNTRY_CODE DE AllowCountry
+SetEnvIf GEOIP_COUNTRY_CODE AT AllowCountry
+SetEnvIf GEOIP_COUNTRY_CODE CH AllowCountry
+SetEnvIf GEOIP_COUNTRY_CODE US AllowCountry  # Google-Bots aus den USA
+SetEnvIf GEOIP_COUNTRY_CODE GB AllowCountry  # Google-Bots aus Großbritannien
+SetEnvIf GEOIP_COUNTRY_CODE IE AllowCountry  # Google-Bots aus Irland
+SetEnvIf GEOIP_COUNTRY_CODE NL AllowCountry  # Google-Bots aus den Niederlanden
+SetEnvIf GEOIP_COUNTRY_CODE FR AllowCountry  # Google-Bots aus Frankreich
+SetEnvIf GEOIP_COUNTRY_CODE CA AllowCountry  # Google-Bots aus Kanada
+Deny from all
+Allow from env=AllowCountry

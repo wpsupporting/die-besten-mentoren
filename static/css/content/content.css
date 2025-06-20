@@ -1,0 +1,660 @@
+/** {
+    outline: 1px solid red; /* Sichtbare Umrandung zum Prüfen */
+  } */
+
+  #content .col-lg-*,
+  #content .col-md-*,
+  #content .col-sm-*,
+  #content .col-xs-* {
+      padding-left: 0; /* Entfernt das linke Padding */
+      padding-right: 0; /* Optional: Entfernt auch rechtes Padding */
+  }
+  
+  div#content-listing {
+      padding: 0px;
+      margin: 0px;
+  }
+  
+  #content .col-md-10.col-sm-12 {
+      padding-left: 0;
+      padding-right: 0;
+  }
+  
+  .container {
+      max-width: 100% !important;
+      width: 100% !important;
+      padding: 0;
+      margin: 0;
+  }
+  
+  /* Container für die Beschreibung */
+  .description-container {
+      margin-top: 20px;
+      margin-bottom: 20px;
+  }
+  
+  .long-description-container {
+      font-family: 'Quicksand Regular', 'Arial Narrow', Arial, sans-serif;
+      font-size: 18px;
+      background-color: #fff;
+      border: 0px solid #ddd;
+      border-radius: 8px;
+      padding: 8px;
+      width: 100%;
+  }
+  
+  /* Überschrift für lange Beschreibung */
+  .long-description-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #760b0b;
+  }
+  
+  /* Vollständiger Markdown-Inhalt */
+  .single-full-content {
+      font-family: 'Quicksand SemiBold', 'Arial Narrow', Arial, sans-serif;
+      font-size: 1.6rem;
+      color: #555;
+      line-height: 1.5;
+  }
+  
+  /* Formatierung für h1, h2 und h3 innerhalb von .single-full-content */
+  .single-full-content h1,
+  .single-full-content h2,
+  .single-full-content h3 {
+      color: #352867 !important;
+  }
+  
+  /* Spezifische Schriftgrößen für h1, h2 und h3 */
+  .single-full-content h1 {
+      font-size: 3.0rem; /* Größere Schrift für h1 */
+      color: #352867;
+  }
+  
+  .single-full-content h2 {
+      font-size: 2.9rem; /* Mittelgroße Schrift für h2 */
+      color: #352867;
+  }
+  
+  .single-full-content h3 {
+      font-size: 2.75rem; /* Kleinere Schrift für h3 */
+      color: #352867;
+  }
+  
+  .single-partner-buttons {
+      display: block !important;
+  }
+  
+  /* Unsichtbarer Platzhalter für gleichmäßige Breite */
+  .invisible-placeholder {
+      visibility: hidden; /* Unsichtbar machen */
+      height: 0; /* Keine Höhe anzeigen */
+      padding: 0; /* Kein Inhalt */
+      margin: 0; /* Kein Abstand */
+      border: none; /* Kein Rahmen */
+  }
+  
+  /* Breiter Container mit Schatten und Rahmen */
+  .wider-container {
+      width: 100%;
+      max-width: 90%; /* Begrenze die Breite auf 90% */
+      margin: 0 auto; /* Zentriere den Container */
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schatten */
+      padding: 20px;
+  }
+  
+  /* Content Item Styling */
+  .content-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      padding-bottom: 120px; /* Standardwert */
+  }
+  
+  /* Dynamisches Entfernen von Padding */
+  .content-item.no-buttons {
+      padding-bottom: 90px; /* Reduziertes Padding ohne Buttons */
+  }
+  .content-item.no-buttons.no-special-offers {
+      padding-bottom: 60px; /* Reduziertes Padding ohne Buttons & Sonderangebote */
+  }
+  .content-item.no-buttons.no-special-offers.no-article-number {
+      padding-bottom: 15px; /* Minimales Padding ohne Inhalte */
+  }
+  
+  /* Dynamisches Ausblenden von Elementen */
+  .no-buttons .price-buttons-container {
+      display: none;
+  }
+  .no-special-offers .special-offer-outer {
+      display: none;
+  }
+  .no-article-number .content-artikelnr {
+      display: none;
+  }
+  
+  /* Entferne Abstände in der .row */
+  .row {
+      margin: 0 !important;
+      padding: 0 !important;
+  }
+  
+  /* Hover-Effekte für alle Items */
+  .content-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Image Styling */
+  .image {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+  }
+  
+  .image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      transition: transform 0.3s ease;
+  }
+  
+  .image img:hover {
+      transform: scale(1.05);
+  }
+  
+  /* Title Styling */
+  h2.content-title {
+      font-family: 'Quicksand SemiBold', 'Arial Narrow', Arial, sans-serif;
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: #1E2460;
+      color: #ffffff;
+      padding: 10px;
+      border-radius: 4px;
+  }
+  
+  /* Short Description */
+  .short-description {
+      font-family: 'Quicksand Regular', 'Arial Narrow', Arial, sans-serif;
+      font-size: 1.4em;
+      color: #1E2460;
+      line-height: 1.6;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-align: center;
+  }
+  
+  /* Preis Buttons */
+  .price-buttons-container {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+  }
+  
+  /* Preis Container */
+  .price-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+      margin-bottom: 22px;
+      font-size: 20px;
+      font-family: 'Quicksand Bold', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  .price, .old-price, .special-price {
+      font-size: 1em;
+      font-weight: bold;
+  }
+  
+  .old-price {
+      text-decoration: line-through;
+      color: #999;
+      margin-right: 10px;
+  }
+  
+  .special-price {
+      color: #A3075C;
+  }
+  
+  /* Author Styling */
+  .content-author {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 10px;
+      color: #a64597;
+  }
+  
+  .content-author a {
+      text-decoration: none;
+      color: #A3075C;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      font-size: 17px;
+  }
+  
+  .content-author a:hover {
+      color: #0056b3;
+  }
+  
+  /* Artikelnummer Styling */
+  .content-artikelnr {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 0.7em;
+      color: #555;
+      text-align: center;
+  }
+  
+  /* Stile für single-long-description */
+  .single-long-description {
+      font-family: 'Quicksand Regular', 'Arial Narrow', Arial, sans-serif;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+  }
+  
+  /* Media Queries */
+  @media (min-width: 1200px) {
+      .content-row .content-item {
+          flex: 1 1 calc(25% - 15px); /* Standard: 4 Spalten */
+          max-width: calc(25% - 15px);
+      }
+  
+      /* Einzelansicht: Nimmt volle Breite */
+      .content-row .content-item:only-child {
+          flex: 0 0 calc(50% - 15px); /* Mindestens die Hälfte der Breite */
+          max-width: calc(50% - 15px);
+          margin: 0 auto; /* Zentriert das Element */
+      }
+  }
+  
+  .main-content-with-border {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Rahmen für den Content-Bereich */
+  /* Spezifischer Stil für die Single-Ansicht */
+  #content.single-view .container.single-container {
+      background-color: #ffffff;
+      border: 1px solid #dddddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      margin: 0 auto;
+      width: 80%;
+  }
+  
+  /* Haupt-Container für Single-Ansicht */
+  .single-container {
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      background-color: #fff;
+      margin-bottom: 30px;
+      width: 100%;
+  }
+  
+  /* Rahmen für die Sidebar */
+  .sidebar-container {
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      background-color: #f9f9f9;
+      margin-top: 20px;
+  }
+  
+  /* Allgemeiner Abstand für die Spalten */
+  .single-left-column,
+  .single-right-column {
+      margin-bottom: 30px;
+  }
+  
+  /* Titel im Hauptbereich */
+  h2.single-content-title {
+      font-family: 'Quicksand SemiBold', 'Arial Narrow', Arial, sans-serif;
+      background-color: #1E2460;
+      color: #ffffff;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: left;
+      margin-bottom: 20px;
+      font-size: 1.6em;
+  }
+  
+  /* Titel in der rechten Spalte */
+  h3.single-short-title-right {
+      background-image: linear-gradient(90deg, #1d2e64 0%, #e5007d 100%) !important;
+      color: #ffffff;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+      font-family: 'Quicksand SemiBold', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  .single-short-description {
+      font-size: 2.0rem;
+      font-family: 'Quicksand Regular', 'Arial Narrow', Arial, sans-serif;
+      text-align: justify;
+  }
+  
+  /* Bildbereich */
+  /* Container für das Bild */
+  .single-image {
+      width: 100%;  /* Bild nimmt die gesamte Breite des Containers ein */
+      max-width: 300px;  /* Maximale Breite des Bildes auf 300px begrenzen */
+      height: auto;  /* Höhe passt sich proportional zur Breite an */
+      max-height: 350px;  /* Maximale Höhe des Bildes auf 300px begrenzen */
+      margin: 0 auto 20px;  /* Zentriert das Bild und fügt Abstand nach unten hinzu */
+      overflow: unset;  /* Verhindert, dass der Inhalt überläuft */
+      border-radius: 8px;  /* Abgerundete Ecken für das Bild */
+  }
+  
+  /* Bild selbst - anpassen, ohne das Seitenverhältnis zu verzerren */
+  .single-image img {
+      width: 100%;  /* Bild passt sich der Breite des Containers an */
+      height: 100%;  /* Bild passt sich der Höhe des Containers an */
+      object-fit: cover;  /* Bild wird zugeschnitten, um den Container zu füllen, ohne das Seitenverhältnis zu verzerren */
+  }
+  
+  .single-image img:hover {
+      transform: scale(1.05);
+  }
+  
+  /* Sonderangebot */
+  .single-special-offer-outer {
+      margin-top: 20px;
+      text-align: right;
+      display: flex;
+      justify-content: flex-end;
+  }
+  
+  .single-special-offer {
+      font-size: 1.2em;
+      color: #A3075C;
+      font-weight: bold;
+  }
+  
+  p.special-offer {
+      text-align: center;
+      color: #A3075C;
+      font-size: 1.6rem;
+      font-family: 'Quicksand SemiBold';
+  }
+
+  .no-offer {
+    display: none; /* Versteckt das Element vollständig */
+}
+  
+  /* Preisbereich */
+  .single-price-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+  }
+  
+  .single-price {
+      font-size: 2.3em;
+      font-weight: bold;
+      color: #A3075C;
+  }
+  
+  .single-old-price {
+      font-size: 2.3em;
+      text-decoration: line-through;
+      color: #999;
+      margin-right: 10px;
+  }
+  
+  .single-special-price {
+      font-size: 2.3em;
+      color: #A3075C;
+  }
+  
+  /* Buttons */
+  .single-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+  }
+  
+  .single-btn {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 25px; /* Erhöhtes Padding für mehr Höhe und Breite */
+      font-size: 2.1rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: #ffffff; /* Schwarzer Text */
+      background-color: #fff; /* Weißer Hintergrund */
+      border: 1px solid #ddd; /* Grauer Rand */
+      border-radius: 5px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      text-align: center;
+      white-space: nowrap;
+      line-height: 1.5;
+      min-width: 200px; /* Feste Mindestbreite */
+      height: 70px; /* Feste Höhe */
+  }
+  
+  /* Hover-Effekt für .single-btn */
+  .single-btn:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+      opacity: 0.9;
+      color:#ffffff
+  }
+  
+  /* Buttons Styling für die spezifischen Aktionen */
+  .single-btn-landingpage,
+  .single-btn-discount {
+      background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(105, 105, 236, 1) 0.1%, rgba(31, 31, 112, 1) 100.2%);
+  }
+  
+  .single-btn-buy-now {
+      background-image: linear-gradient(90deg, #1d2e64 0%, #e5007d 100%) !important;
+      color: #ffffff;
+  }
+  
+  /* Icon im Button */
+  .single-button-icon {
+      margin-right: 5px;
+      font-size: 1.6rem;
+  }
+  
+  /* Text im Button */
+  .single-button-text {
+      font-size: 1.6rem;
+      text-align: center;
+  }
+  
+  /* Anpassungen für kleinere Bildschirme */
+  @media (max-width: 767px) {
+      .single-buttons-container {
+          display: flex;
+          justify-content: center;
+      }
+  
+      .single-short-description {
+          font-size: 1.6em;
+          line-height: 1.4;
+      }
+  
+      .single-btn {
+          display: block;
+          min-width: 100%;
+          text-align: center;
+      }
+  }
+  
+  /* Buttons Styling */
+  .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+  }
+  
+  .buttons.single {
+      justify-content: center;
+  }
+  
+  .btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 10px; /* Erhöhtes Padding für mehr Höhe und Breite */
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: #ffffff; /* Schwarzer Text */
+      background-color: #fff; /* Weißer Hintergrund */
+      border: 1px solid #ddd; /* Grauer Rand */
+      border-radius: 5px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      text-align: center;
+      word-break: break-word;
+      white-space: normal;
+      line-height: 1.5;
+      width: calc(50% - 5px);
+      height: 50px; /* Feste Höhe */
+  }
+  
+  /* Hover-Effekt für .btn */
+  .btn:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+      opacity: 0.9;
+  }
+  
+  .buttons.single .btn {
+      width: auto;
+  }
+  
+  .btn-landingpage,
+  .btn-discount {
+      background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(105, 105, 236, 1) 0.1%, rgba(31, 31, 112, 1) 100.2%);
+  }
+  
+  .btn.btn-discount:hover {
+      background-image: linear-gradient(90deg, #1d2e64 0%, #e5007d 100%) !important;
+  }
+  
+  .btn.focus, .btn:focus, .btn:hover {
+      color: #dad4d4; /* Schwarzer Text */
+  }
+  
+  .btn-buy-now {
+      background-image: linear-gradient(90deg, #1d2e64 0%, #e5007d 100%) !important;
+  }
+  
+  .button-icon {
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+  }
+  
+  .button-text {
+      font-size: 1.5em;
+      text-align: center;
+  }
+  
+  /* Zurück-Button */
+  .back-button {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: flex-start;
+  }
+  
+  .back-button .btn-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 25px; /* Erhöhtes Padding für mehr Höhe und Breite */
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: #000; /* Schwarzer Text */
+      background-color: #fff; /* Weißer Hintergrund */
+      border: 1px solid #ddd; /* Grauer Rand */
+      border-radius: 5px;
+      height: 50px; /* Feste Höhe */
+  }
+  
+  .back-button .btn-back:hover {
+      background-color: #f0f0f0; /* Hellerer Hintergrund beim Hover */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+      opacity: 0.9;
+  }
+  
+  /* Container für Buttons in der Single-Ansicht */
+  .single-buttons-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+  }
+  
+  /* Hinweis */
+  .single-hinweis {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #760b0b;
+      text-align: right;
+      font-size: 1.3rem;
+  }
+  
+  /* Artikelnummer */
+  .single-artikelnr {
+      margin-top: 15px;
+      font-size: 0.9em;
+      color: #555;
+      text-align: left;
+  }
+  

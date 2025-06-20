@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    {{ partial "headers.html" . }}
+</head>
+<body>
+    <div id="all">
+        {{ partial "logo.html" . }}
+        {{ partial "menu.html" . }}
+        {{ partial "breadcrumbs.html" . }}
+
+        <div id="content">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Sidebar nur anzeigen, wenn NICHT in einer der Spezialkategorien -->
+                    {{ if not (or
+                        (eq .Section "mentorenkategorien")
+                        (eq .Section "kursekategorien")
+                        (eq .Section "autorenkategorien")
+                        (eq .Section "blogkategorien")
+                        (eq .Section "produktekategorien")
+                    ) }}
+                        <div class="col-md-3" id="left-column">
+                            <!-- Sidebar-Code oder Partial -->
+                            {{ partial "sidebar.html" . }}
+                        </div>
+                    {{ end }}
+
+                    <!-- Hauptinhalt -->
+                    <!-- In Spezialkategorien volle Breite (col-md-12), sonst col-md-9 -->
+                    <div class="{{ if or (eq .Section "mentorenkategorien")
+                                      (eq .Section "kursekategorien")
+                                      (eq .Section "autorenkategorien")
+                                      (eq .Section "blogkategorien")
+                                      (eq .Section "produktekategorien") }}
+                                col-md-12
+                             {{ else }}
+                                col-md-9
+                             {{ end }}"
+                         id="content-listing">
+                        
+                        {{ if eq .Section "produktekategorien" }}
+                            {{ template "produkte/produktekategorielist.html" . }}
+                        {{ else if eq .Section "mentorenkategorien" }}
+                            {{ template "mentoren/mentorenkategorielist.html" . }}
+                        {{ else if eq .Section "kursekategorien" }}
+                            {{ template "kurse/kursekategorielist.html" . }}
+                        {{ else if eq .Section "autorenkategorien" }}
+                            {{ template "autoren/autorenkategorielist.html" . }}
+                        {{ else if eq .Section "blogkategorien" }}
+                            {{ template "blog/blogkategorielist.html" . }}
+                        {{ else }}
+                            <div class="alert alert-warning">
+                                <p>ERROR: Keine passende Kategorie gefunden.</p>
+                            </div>
+                        {{ end }}
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation">
+                            {{ partial "pagination.html" . }}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ partial "scripts.html" . }}
+        {{ partial "footer.html" . }}
+    </div>
+</body>
+</html>
