@@ -1,0 +1,16 @@
+### HUGO ###
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+### SYSTEM ###
+.DS_Store
+Thumbs.db
+
+### IDE ###
+.vscode/
+.idea/
+
+### SENSIBLE DATEN ###
+.env
+*.local
