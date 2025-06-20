@@ -1,1 +1,20 @@
-themes/
+### HUGO ###
+/public/
+/resources/_gen/
+.hugo_build.lock
+themes/          # Nur ignorieren, wenn Themes NICHT als Submodule genutzt werden
+
+### SYSTEM ###
+.DS_Store
+Thumbs.db
+desktop.ini
+
+### IDE ###
+.vscode/
+.idea/
+*.swp
+
+### SENSIBLE DATEN ###
+.env
+*.local
+config.local.toml
